@@ -4,7 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   trailingSlash: true,
-  output: "standalone",
+  output: "export",
 };
 
 module.exports = nextConfig;

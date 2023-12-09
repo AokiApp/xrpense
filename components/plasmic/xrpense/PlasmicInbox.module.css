@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  overflow: auto;
+  min-width: 0;
+}
+.rootminimized {
+  max-height: 160px;
+  box-shadow: inset 0px -10px 16px -10px #ffffff;
+}
+.inboxItem:global(.__wab_instance) {
+  position: relative;
+}

@@ -1,0 +1,58 @@
+.root:global(.__wab_instance) {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  max-width: 100%;
+  object-fit: cover;
+  position: relative;
+  color: #535353;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: #ffffff;
+  font-family: "Bungee Hairline";
+  font-size: 24px;
+  min-width: 0;
+}
+.freeBox___9SzLe {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  background: var(--token-vHx4PCz0RMbW);
+  overflow: visible;
+  min-width: 0;
+  min-height: 0;
+}
+.freeBox__fw0H {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  background: var(--token-zvh9ZtUJ66Sh);
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+  box-shadow: 0px 0px 24px 0px #00000047;
+  overflow: visible;
+  min-width: 0;
+  min-height: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__fw0H {
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    border-bottom-left-radius: 0px;
+  }
+}

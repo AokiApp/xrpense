@@ -1,0 +1,118 @@
+.root {
+  box-shadow: 10px 16px 32px 0px #00000036;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+  justify-self: flex-start;
+  background: #ffffff;
+  overflow: hidden;
+  min-width: 0;
+  border-radius: 16px;
+}
+.freeBox___8SdB3 {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background: var(--token--BMEyZEX6vxW);
+  min-width: 0;
+  padding: 24px;
+}
+.freeBox___8SdB3 > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  margin-left: calc(0px - 8px);
+  width: calc(100% + 8px);
+}
+.freeBox___8SdB3 > :global(.__wab_flex-container) > *,
+.freeBox___8SdB3 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___8SdB3 > :global(.__wab_flex-container) > picture > img,
+.freeBox___8SdB3
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 8px;
+}
+.freeBoxnoTitle___8SdB3542Ar {
+  display: none;
+}
+.freeBox__eybvz {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.slotTargetTitle {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #000000;
+}
+.freeBox___9Wfyy {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.freeBox___9Wfyy > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: calc(0px - 6px);
+  width: calc(100% + 6px);
+}
+.freeBox___9Wfyy > :global(.__wab_flex-container) > *,
+.freeBox___9Wfyy > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___9Wfyy > :global(.__wab_flex-container) > picture > img,
+.freeBox___9Wfyy
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 6px;
+}
+.iconButton__yMXx:global(.__wab_instance) {
+  position: relative;
+}
+.svg__aIs {
+  object-fit: cover;
+  height: 1em;
+}
+.freeBox__fEgU2 {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow: auto;
+  min-width: 0;
+  min-height: 0;
+}
+.freeBox__x6Vop {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+  min-width: 0;
+  min-height: 0;
+  padding: var(--token-UEz8jpx4ZeEk);
+}

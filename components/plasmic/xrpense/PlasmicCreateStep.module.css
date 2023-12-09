@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  overflow: auto;
+  background: var(--token-M2R3POAUpLhC);
+  position: relative;
+  min-width: 0;
+}
+.freeBox {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 8px;
+}
+.step__xbjjC:global(.__wab_instance) {
+  position: relative;
+}
+.step__p8Rmu:global(.__wab_instance) {
+  position: relative;
+}
+.step__mNjZm:global(.__wab_instance) {
+  position: relative;
+}
+.step__b0I40:global(.__wab_instance) {
+  position: relative;
+}

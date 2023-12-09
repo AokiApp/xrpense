@@ -5,7 +5,15 @@ import { useRouter } from "next/router";
 import { signIn } from "@/blockchain";
 
 function SignIn() {
-  return <PlasmicSignIn onLogin={signIn} />;
+  const router = useRouter();
+  return (
+    <PlasmicSignIn
+      onLogin={async () => {
+        await signIn();
+        router.push("/");
+      }}
+    />
+  );
 }
 
 export default SignIn;

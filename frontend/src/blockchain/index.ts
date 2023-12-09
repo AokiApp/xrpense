@@ -5,16 +5,15 @@ import {
   XrplPrivateKeyProvider,
   getXRPLChainConfig,
 } from "@web3auth/xrpl-provider";
-import { convertStringToHex, Payment, xrpToDrops } from "xrpl";
 
-const chainConfig = getXRPLChainConfig("devnet");
-
-const web3auth = new Web3AuthNoModal({
-  chainConfig: {
-    chainNamespace: CHAIN_NAMESPACES.OTHER,
-    chainId: "0x3",
-    rpcTarget: "https://s.altnet.rippletest.net:51234",
-  },
+const chainConfig = {
+  ...getXRPLChainConfig("testnet"),
+  wsTarget: "wss://testnet.xrpl-labs.com/",
+  rpcTarget: "https://testnet.xrpl-labs.com/",
+};
+console.log("chainConfig", chainConfig);
+export const web3auth = new Web3AuthNoModal({
+  chainConfig,
   clientId:
     "BOyXHg9WYpxLJEzFcvTctGwM_Bof6WItmq31Mf8A4WFutBFv-urrckEGXx2lEZ0DN0511F13_QhKYgTgwY2mBQI", // get from https://dashboard.web3auth.io
   web3AuthNetwork: "sapphire_devnet",
@@ -28,31 +27,39 @@ const xrplProvider = new XrplPrivateKeyProvider({
 const adapter = new OpenloginAdapter({
   privateKeyProvider: xrplProvider,
   adapterSettings: {
-    uxMode: "redirect",
+    uxMode: "popup",
     loginConfig: {
       jwt: {
-        verifier: "b2clogin",
+        verifier: "xrpense-auth0",
         typeOfLogin: "jwt",
         name: "企業アカウントでシングルサインオン",
-        description: "Azure AD B2C経由で企業アカウントでログイン",
-        clientId: "fd3b26bf-6c50-411f-bc92-052b5693e413",
+        description: "Auth0経由で企業アカウントでログイン",
+        clientId: "a3ljjOhdkgUdG4xSMQ4rlFJsqAfVy7jg",
       },
     },
   },
 });
 web3auth.configureAdapter(adapter);
 
+web3auth.init();
 export async function signIn() {
-  await web3auth.init();
+  if (web3auth.connected) {
+    return web3auth.provider;
+  }
   const provider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
     loginProvider: "jwt",
     extraLoginOptions: {
-      domain:
-        "https://xrpensehackathon.b2clogin.com/xrpensehackathon.onmicrosoft.com/oauth2/v2.0/?p=b2c_1_xrpenselogin",
-      response_type: "token",
-      scope:
-        "openid offline_access https://xrpensehackathon.onmicrosoft.com/xrpense/email.read",
-      response_mode: "fragment",
+      domain: "https://dev-lvysvbffb7t6gp8w.us.auth0.com",
     },
   });
+  if (!provider) {
+    alert("provider is undefined");
+  }
+  return provider;
+}
+
+declare global {
+  interface Window {
+    currentAddr: string | null;
+  }
 }

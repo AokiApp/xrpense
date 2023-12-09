@@ -11,14 +11,14 @@
   },
   "images": {
     "scheme": "public-files",
-    "publicDir": "../public",
+    "publicDir": "../../public",
     "publicUrlPrefix": "/"
   },
   "tokens": {
     "scheme": "theo",
     "tokensFilePath": "plasmic-tokens.theo.json"
   },
-  "srcDir": "components",
+  "srcDir": "src/components",
   "defaultPlasmicDir": "./plasmic",
   "projects": [
     {
@@ -1104,72 +1104,92 @@
         {
           "id": "7Mf1A_nSMNLP",
           "name": "happy-man-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/happyManSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/happyManSvgrepoComsvg.svg"
         },
         {
           "id": "CJSunn5L6y6H",
           "name": "question-square-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/questionSquareSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/questionSquareSvgrepoComsvg.svg"
         },
         {
           "id": "yfk5DeGlurbU",
           "name": "facei.jpg",
-          "filePath": "../public/plasmic/xrpense/images/faceijpg.jpg"
+          "filePath": "../../public/plasmic/xrpense/images/faceijpg.jpg"
         },
         {
           "id": "xaiQHQVujcy1",
           "name": "image",
-          "filePath": "../public/plasmic/xrpense/images/image.svg"
+          "filePath": "../../public/plasmic/xrpense/images/image.svg"
         },
         {
           "id": "R9ZNpPZZ_pxO",
           "name": "bank-card-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/bankCardSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/bankCardSvgrepoComsvg.svg"
         },
         {
           "id": "nwjUEdcu0HUr",
           "name": "無題.jpeg",
-          "filePath": "../public/plasmic/xrpense/images/無題jpeg.png"
+          "filePath": "../../public/plasmic/xrpense/images/無題jpeg.png"
         },
         {
           "id": "UbQDx4WHn-wQ",
           "name": "無題 (2).png",
-          "filePath": "../public/plasmic/xrpense/images/無題2Png.png"
+          "filePath": "../../public/plasmic/xrpense/images/無題2Png.png"
         },
         {
           "id": "jTlduu6OOd00",
           "name": "train-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/trainSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/trainSvgrepoComsvg.svg"
         },
         {
           "id": "XsCHjiwRS3hk",
           "name": "scope-expense-claims-write-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/scopeExpenseClaimsWriteSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/scopeExpenseClaimsWriteSvgrepoComsvg.svg"
         },
         {
           "id": "WKOhzR35EBnE",
           "name": "showcase-723-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/showcase723SvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/showcase723SvgrepoComsvg.svg"
         },
         {
           "id": "dHxHnvD_rPS0",
           "name": "office-supplies-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/officeSuppliesSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/officeSuppliesSvgrepoComsvg.svg"
         },
         {
           "id": "LDyctXOYk3YK",
           "name": "conference-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/conferenceSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/conferenceSvgrepoComsvg.svg"
         },
         {
           "id": "54p6j_VX2_Pf",
           "name": "information-chat-right-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/informationChatRightSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/informationChatRightSvgrepoComsvg.svg"
         },
         {
           "id": "y5EV5T7-mNpD",
           "name": "history-log-manuscript-svgrepo-com.svg",
-          "filePath": "../public/plasmic/xrpense/images/historyLogManuscriptSvgrepoComsvg.svg"
+          "filePath": "../../public/plasmic/xrpense/images/historyLogManuscriptSvgrepoComsvg.svg"
+        },
+        {
+          "id": "BdqvSKzg0v7v",
+          "name": "image 2",
+          "filePath": "../../public/plasmic/xrpense/images/image2.png"
+        },
+        {
+          "id": "U6gwcW15cLkz",
+          "name": "azure-active-directory.svg",
+          "filePath": "../../public/plasmic/xrpense/images/azureActiveDirectorysvg.svg"
+        },
+        {
+          "id": "bopCmbcR5OO8",
+          "name": "image 3",
+          "filePath": "../../public/plasmic/xrpense/images/image3.png"
+        },
+        {
+          "id": "2PsQVYDTyPDU",
+          "name": "image 4",
+          "filePath": "../../public/plasmic/xrpense/images/image4.webp"
         }
       ],
       "indirect": false,

@@ -9,7 +9,7 @@
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
 }
-.text {
+.text__h6GjF {
   position: relative;
   width: 100%;
   height: auto;
@@ -55,4 +55,13 @@
     border-top-right-radius: 32px;
     border-bottom-left-radius: 0px;
   }
+}
+.text__m7Xe {
+  width: 222px;
+  height: auto;
+  max-width: 100%;
+  white-space: pre;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  flex-shrink: 0;
 }

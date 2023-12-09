@@ -33,6 +33,13 @@
   position: relative;
   height: 1183px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .layout:global(.__wab_instance):global(.__wab_instance):global(
+      .__wab_instance
+    ) {
+    height: 1566px;
+  }
+}
 .freeBox__hi5Yp {
   display: flex;
   position: relative;
@@ -188,6 +195,8 @@
     flex-direction: column;
     margin-left: calc(0px - 0px);
     width: calc(100% + 0px);
+    margin-top: calc(0px - var(--token-PGEhrONtRynf));
+    height: calc(100% + var(--token-PGEhrONtRynf));
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -200,6 +209,7 @@
     > picture
     > img {
     margin-left: 0px;
+    margin-top: var(--token-PGEhrONtRynf);
   }
 }
 .popover:global(.__wab_instance) {

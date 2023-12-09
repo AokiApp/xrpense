@@ -62,7 +62,6 @@ export const PlasmicLayoutBase__ArgProps = new Array<ArgPropType>("children");
 
 export type PlasmicLayoutBase__OverridesType = {
   root?: p.Flex<typeof RichLayout>;
-  text?: p.Flex<"div">;
 };
 
 export interface DefaultLayoutBaseProps {
@@ -111,7 +110,37 @@ function PlasmicLayoutBase__RenderFunc(props: {
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      actionsChildren={null}
+      actionsChildren={
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__m7Xe
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return (() => {
+                  try {
+                    return "アドレス: " + currentAddr;
+                  } catch (e) {
+                    return "未接続";
+                  }
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u30a2\u30c9\u30ec\u30b9: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      }
       className={classNames(
         "__wab_instance",
         projectcss.root_reset,
@@ -134,16 +163,14 @@ function PlasmicLayoutBase__RenderFunc(props: {
           )
         }
       )}
-      fixSiderbar={false}
+      fixSiderbar={true}
       layout={"side"}
       logoElement={
         <div
-          data-plasmic-name={"text"}
-          data-plasmic-override={overrides.text}
           className={classNames(
             projectcss.all,
             projectcss.__wab_text,
-            sty.text
+            sty.text__h6GjF
           )}
         >
           {"X"}
@@ -219,15 +246,13 @@ function PlasmicLayoutBase__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text"],
-  text: ["text"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: typeof RichLayout;
-  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -290,7 +315,6 @@ export const PlasmicLayoutBase = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicLayoutBase
     internalVariantProps: PlasmicLayoutBase__VariantProps,

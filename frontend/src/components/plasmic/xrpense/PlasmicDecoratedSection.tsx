@@ -51,13 +51,16 @@ createPlasmicElementProxy;
 
 export type PlasmicDecoratedSection__VariantMembers = {
   noTitle: "noTitle";
+  noAction: "noAction";
 };
 export type PlasmicDecoratedSection__VariantsArgs = {
   noTitle?: SingleBooleanChoiceArg<"noTitle">;
+  noAction?: SingleBooleanChoiceArg<"noAction">;
 };
 type VariantPropType = keyof PlasmicDecoratedSection__VariantsArgs;
 export const PlasmicDecoratedSection__VariantProps = new Array<VariantPropType>(
-  "noTitle"
+  "noTitle",
+  "noAction"
 );
 
 export type PlasmicDecoratedSection__ArgsType = {
@@ -81,6 +84,7 @@ export interface DefaultDecoratedSectionProps {
   children?: React.ReactNode;
   title?: React.ReactNode;
   noTitle?: SingleBooleanChoiceArg<"noTitle">;
+  noAction?: SingleBooleanChoiceArg<"noAction">;
   className?: string;
 }
 
@@ -122,6 +126,12 @@ function PlasmicDecoratedSection__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) => $props.noTitle
+      },
+      {
+        path: "noAction",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noAction
       }
     ],
     [$props, $ctx, $refs]
@@ -154,6 +164,11 @@ function PlasmicDecoratedSection__RenderFunc(props: {
         as={"div"}
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox___8SdB3, {
+          [sty.freeBoxnoAction___8SdB30BKlX]: hasVariant(
+            $state,
+            "noAction",
+            "noAction"
+          ),
           [sty.freeBoxnoTitle___8SdB3542Ar]: hasVariant(
             $state,
             "noTitle",
@@ -171,7 +186,13 @@ function PlasmicDecoratedSection__RenderFunc(props: {
         <p.Stack
           as={"div"}
           hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox___9Wfyy)}
+          className={classNames(projectcss.all, sty.freeBox___9Wfyy, {
+            [sty.freeBoxnoAction___9Wfyy0BKlX]: hasVariant(
+              $state,
+              "noAction",
+              "noAction"
+            )
+          })}
         >
           {p.renderPlasmicSlot({
             defaultContents: (

@@ -132,12 +132,12 @@ function PlasmicInbox__RenderFunc(props: {
   });
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    query: usePlasmicDataOp(() => {
+    inboxQuery: usePlasmicDataOp(() => {
       return {
         sourceId: "AtiexzeE27KKVJrwX6s5c",
-        opId: "f7ac0ef5-250e-4f64-b249-9ef57b239356",
+        opId: "b47d13c1-cb2c-420e-be5d-0764f62f97c5",
         userArgs: {},
-        cacheKey: `plasmic.$.f7ac0ef5-250e-4f64-b249-9ef57b239356.$.`,
+        cacheKey: `plasmic.$.b47d13c1-cb2c-420e-be5d-0764f62f97c5.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -170,7 +170,7 @@ function PlasmicInbox__RenderFunc(props: {
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
         (() => {
           try {
-            return $queries.query.data.response.data.inbox.map(item => {
+            return $queries.inboxQuery.data.response.data.inbox.map(item => {
               const { title, children, type, updated_at, unread, id } = item;
               const formattedDate = new Date(updated_at).toLocaleString();
               return {
@@ -209,7 +209,7 @@ function PlasmicInbox__RenderFunc(props: {
             key={currentIndex}
             messageId={(() => {
               try {
-                return currentItem.messageId;
+                return currentItem.id;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -276,7 +276,7 @@ function PlasmicInbox__RenderFunc(props: {
                 throw e;
               }
             })()}
-            updateAt={
+            updatedAt={
               <React.Fragment>
                 {(() => {
                   try {

@@ -71,6 +71,7 @@ export type PlasmicReqItem__ArgsType = {
   bill?: React.ReactNode;
   reqId?: string;
   amount?: React.ReactNode;
+  date?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicReqItem__ArgsType;
 export const PlasmicReqItem__ArgProps = new Array<ArgPropType>(
@@ -78,13 +79,13 @@ export const PlasmicReqItem__ArgProps = new Array<ArgPropType>(
   "title",
   "bill",
   "reqId",
-  "amount"
+  "amount",
+  "date"
 );
 
 export type PlasmicReqItem__OverridesType = {
   root?: p.Flex<"a"> & Partial<LinkProps>;
   svg?: p.Flex<"svg">;
-  text?: p.Flex<"div">;
 };
 
 export interface DefaultReqItemProps {
@@ -93,6 +94,7 @@ export interface DefaultReqItemProps {
   bill?: React.ReactNode;
   reqId?: string;
   amount?: React.ReactNode;
+  date?: React.ReactNode;
   type?: MultiChoiceArg<"paid" | "inReview" | "rejected" | "unpaid">;
   unread?: SingleBooleanChoiceArg<"unread">;
   className?: string;
@@ -261,32 +263,14 @@ function PlasmicReqItem__RenderFunc(props: {
               })
             })}
           </div>
-          <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text,
-              { [sty.texttype_paid]: hasVariant($state, "type", "paid") }
-            )}
-          >
-            <React.Fragment>
-              {(() => {
-                try {
-                  return new Date($props.unixtime * 1000).toLocaleString();
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "2023/01/13 13:12";
-                  }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
-          </div>
+          {p.renderPlasmicSlot({
+            defaultContents: "2023/12/7",
+            value: args.date,
+            className: classNames(sty.slotTargetDate, {
+              [sty.slotTargetDatetype_paid]: hasVariant($state, "type", "paid"),
+              [sty.slotTargetDateunread]: hasVariant($state, "unread", "unread")
+            })
+          })}
         </p.Stack>
         <p.Stack
           as={"div"}
@@ -322,9 +306,8 @@ function PlasmicReqItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "svg", "text"],
-  svg: ["svg"],
-  text: ["text"]
+  root: ["root", "svg"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -332,7 +315,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "a";
   svg: "svg";
-  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -396,7 +378,6 @@ export const PlasmicReqItem = Object.assign(
   {
     // Helper components rendering sub-elements
     svg: makeNodeComponent("svg"),
-    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicReqItem
     internalVariantProps: PlasmicReqItem__VariantProps,

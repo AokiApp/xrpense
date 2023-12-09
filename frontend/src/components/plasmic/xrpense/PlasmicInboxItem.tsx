@@ -21,12 +21,6 @@ import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/react-web/lib/host";
 
 import {
-  executePlasmicDataOp,
-  usePlasmicDataOp,
-  usePlasmicInvalidate
-} from "@plasmicapp/react-web/lib/data-sources";
-
-import {
   hasVariant,
   classNames,
   wrapWithClassName,
@@ -42,7 +36,6 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
-import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -77,7 +70,7 @@ export type PlasmicInboxItem__ArgsType = {
   title?: React.ReactNode;
   children?: React.ReactNode;
   messageId?: string;
-  updateAt?: React.ReactNode;
+  updatedAt?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicInboxItem__ArgsType;
 export const PlasmicInboxItem__ArgProps = new Array<ArgPropType>(
@@ -85,7 +78,7 @@ export const PlasmicInboxItem__ArgProps = new Array<ArgPropType>(
   "title",
   "children",
   "messageId",
-  "updateAt"
+  "updatedAt"
 );
 
 export type PlasmicInboxItem__OverridesType = {
@@ -98,7 +91,7 @@ export interface DefaultInboxItemProps {
   title?: React.ReactNode;
   children?: React.ReactNode;
   messageId?: string;
-  updateAt?: React.ReactNode;
+  updatedAt?: React.ReactNode;
   type?: MultiChoiceArg<"_default" | "wait" | "error" | "focus">;
   unread?: SingleBooleanChoiceArg<"unread">;
   className?: string;
@@ -144,9 +137,6 @@ function PlasmicInboxItem__RenderFunc(props: {
 
   const currentUser = p.useCurrentUser?.() || {};
 
-  let [$queries, setDollarQueries] = React.useState<
-    Record<string, ReturnType<typeof usePlasmicDataOp>>
-  >({});
   const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -167,27 +157,9 @@ function PlasmicInboxItem__RenderFunc(props: {
   const $state = p.useDollarState(stateSpecs, {
     $props,
     $ctx,
-    $queries: $queries,
+    $queries: {},
     $refs
   });
-
-  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    query: usePlasmicDataOp(() => {
-      return {
-        sourceId: "AtiexzeE27KKVJrwX6s5c",
-        opId: "985e3288-b72f-4fa8-b7df-012597adae53",
-        userArgs: {},
-        cacheKey: `plasmic.$.985e3288-b72f-4fa8-b7df-012597adae53.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    })
-  };
-  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
-    setDollarQueries(new$Queries);
-
-    $queries = new$Queries;
-  }
 
   return (
     <p.Stack
@@ -216,21 +188,47 @@ function PlasmicInboxItem__RenderFunc(props: {
         }
       )}
       component={Link}
-      href={`/inbox/${(() => {
-        try {
-          return $props.messageId;
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return undefined;
-          }
-          throw e;
-        }
-      })()}`}
       onClick={async event => {
         const $steps = {};
+
+        $steps["goToInboxDetail"] = true
+          ? (() => {
+              const actionArgs = {
+                destination: `/inbox/${(() => {
+                  try {
+                    return $props.messageId;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}`
+              };
+              return (({ destination }) => {
+                if (
+                  typeof destination === "string" &&
+                  destination.startsWith("#")
+                ) {
+                  document
+                    .getElementById(destination.substr(1))
+                    .scrollIntoView({ behavior: "smooth" });
+                } else {
+                  __nextRouter?.push(destination);
+                }
+              })?.apply(null, [actionArgs]);
+            })()
+          : undefined;
+        if (
+          $steps["goToInboxDetail"] != null &&
+          typeof $steps["goToInboxDetail"] === "object" &&
+          typeof $steps["goToInboxDetail"].then === "function"
+        ) {
+          $steps["goToInboxDetail"] = await $steps["goToInboxDetail"];
+        }
       }}
       platform={"nextjs"}
     >
@@ -291,9 +289,9 @@ function PlasmicInboxItem__RenderFunc(props: {
             {p.renderPlasmicSlot({
               defaultContents:
                 "\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u53d7\u3051\u53d6\u3063\u305f\u6642\u9593\u304c\u5165\u308a\u307e\u3059",
-              value: args.updateAt,
-              className: classNames(sty.slotTargetUpdateAt, {
-                [sty.slotTargetUpdateAtunread]: hasVariant(
+              value: args.updatedAt,
+              className: classNames(sty.slotTargetUpdatedAt, {
+                [sty.slotTargetUpdatedAtunread]: hasVariant(
                   $state,
                   "unread",
                   "unread"

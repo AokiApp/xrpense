@@ -118,9 +118,11 @@ function PlasmicInboxDetail__RenderFunc(props: {
     query: usePlasmicDataOp(() => {
       return {
         sourceId: "AtiexzeE27KKVJrwX6s5c",
-        opId: "5be17161-ffc8-400c-8134-4320d018d449",
-        userArgs: {},
-        cacheKey: `plasmic.$.5be17161-ffc8-400c-8134-4320d018d449.$.`,
+        opId: "64c3d064-dbe5-42f8-aaae-0820cdc8997f",
+        userArgs: {
+          variables: [$ctx.params.messageId]
+        },
+        cacheKey: `plasmic.$.64c3d064-dbe5-42f8-aaae-0820cdc8997f.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -174,12 +176,12 @@ function PlasmicInboxDetail__RenderFunc(props: {
                         return [
                           [
                             "タイトル",
-                            $queries.query.data.response.data.inbox[1].title
+                            $queries.query.data.response.data.inbox_by_pk.title
                           ],
                           [
                             "受信時刻",
                             new Date(
-                              $queries.query.data.response.data.inbox[1].updated_at
+                              $queries.query.data.response.data.inbox_by_pk.updated_at
                             ).toLocaleString()
                           ]
                         ];
@@ -246,6 +248,7 @@ function PlasmicInboxDetail__RenderFunc(props: {
                       "__wab_instance",
                       sty.decoratedSection
                     )}
+                    noAction={true}
                     title={"\u30e1\u30c3\u30bb\u30fc\u30b8\u5185\u5bb9"}
                   >
                     <div
@@ -263,8 +266,8 @@ function PlasmicInboxDetail__RenderFunc(props: {
                         <React.Fragment>
                           {(() => {
                             try {
-                              return $queries.query.data.response.data.inbox[1]
-                                .children;
+                              return $queries.query.data.response.data
+                                .inbox_by_pk.children;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||

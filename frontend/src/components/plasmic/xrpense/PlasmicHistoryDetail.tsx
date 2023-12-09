@@ -43,9 +43,17 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import Layout from "../../Layout"; // plasmic-import: 8kcWfTTW5pIG/component
-import DecoratedSection from "../../DecoratedSection"; // plasmic-import: TLGCmAakJkGm/component
-import IconButton from "../../IconButton"; // plasmic-import: c6xa4h_PpvrO/component
-import KvItem from "../../KvItem"; // plasmic-import: Haxw2MIMlmpq/component
+import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
+import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
+import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
+import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
+import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
+import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
+import { Quill } from "@plasmicpkgs/react-quill";
+import { quillHelpers as Quill_Helpers } from "@plasmicpkgs/react-quill";
+import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
+import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
+import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -55,7 +63,8 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic_xrpense.module.css"; // plasmic-import: 4QmempJ4uAWNpTRouKWPHf/projectcss
 import sty from "./PlasmicHistoryDetail.module.css"; // plasmic-import: s6l-4R3u5jmn/css
 
-import OpenExternalSvgrepoComsvgIcon from "./icons/PlasmicIcon__OpenExternalSvgrepoComsvg"; // plasmic-import: r2Sk3XCc6h2H/icon
+import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: UPP2br5JFIoC/icon
+import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: tOAoYivXP3sa/icon
 
 createPlasmicElementProxy;
 
@@ -71,9 +80,15 @@ export const PlasmicHistoryDetail__ArgProps = new Array<ArgPropType>();
 export type PlasmicHistoryDetail__OverridesType = {
   root?: p.Flex<"div">;
   layout?: p.Flex<typeof Layout>;
-  freeBox?: p.Flex<"div">;
-  decoratedSection?: p.Flex<typeof DecoratedSection>;
-  kvItem?: p.Flex<typeof KvItem>;
+  form?: p.Flex<typeof FormWrapper>;
+  titleInput?: p.Flex<typeof AntdInput>;
+  dateInput?: p.Flex<typeof AntdInput>;
+  nameInput?: p.Flex<typeof AntdInput>;
+  numInput?: p.Flex<typeof AntdInput>;
+  amountInput?: p.Flex<typeof AntdInput>;
+  taxInput?: p.Flex<typeof AntdSelect>;
+  descriptionInput?: p.Flex<typeof Quill>;
+  attachments?: p.Flex<typeof UploadWrapper>;
 };
 
 export interface DefaultHistoryDetailProps {}
@@ -112,14 +127,105 @@ function PlasmicHistoryDetail__RenderFunc(props: {
   let [$queries, setDollarQueries] = React.useState<
     Record<string, ReturnType<typeof usePlasmicDataOp>>
   >({});
+  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "titleInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: p.generateOnMutateForSpec("value", AntdInput_Helpers)
+      },
+      {
+        path: "dateInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: p.generateOnMutateForSpec("value", AntdInput_Helpers)
+      },
+      {
+        path: "nameInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: p.generateOnMutateForSpec("value", AntdInput_Helpers)
+      },
+      {
+        path: "numInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: p.generateOnMutateForSpec("value", AntdInput_Helpers)
+      },
+      {
+        path: "amountInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: p.generateOnMutateForSpec("value", AntdInput_Helpers)
+      },
+      {
+        path: "taxInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "descriptionInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: p.generateOnMutateForSpec("value", Quill_Helpers)
+      },
+      {
+        path: "attachments.files",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "form.value",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "form",
+        onMutate: p.generateOnMutateForSpec("value", FormWrapper_Helpers)
+      },
+      {
+        path: "form.isSubmitting",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "form",
+        onMutate: p.generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = p.useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: $queries,
+    $refs
+  });
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
     query: usePlasmicDataOp(() => {
       return {
         sourceId: "AtiexzeE27KKVJrwX6s5c",
-        opId: "1b62aca1-6ae1-48ff-a099-55ccdbfeb4d2",
-        userArgs: {},
-        cacheKey: `plasmic.$.1b62aca1-6ae1-48ff-a099-55ccdbfeb4d2.$.`,
+        opId: "b3229186-8fd4-4c5e-8d76-abf0bd687de5",
+        userArgs: {
+          variables: [$ctx.params.reqId]
+        },
+        cacheKey: `plasmic.$.b3229186-8fd4-4c5e-8d76-abf0bd687de5.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -167,139 +273,749 @@ function PlasmicHistoryDetail__RenderFunc(props: {
             <ph.DataCtxReader>
               {$ctx => (
                 <div
-                  data-plasmic-name={"freeBox"}
-                  data-plasmic-override={overrides.freeBox}
-                  className={classNames(projectcss.all, sty.freeBox)}
+                  className={classNames(projectcss.all, sty.freeBox___4PXxr)}
                 >
-                  <DecoratedSection
-                    data-plasmic-name={"decoratedSection"}
-                    data-plasmic-override={overrides.decoratedSection}
-                    className={classNames(
-                      "__wab_instance",
-                      sty.decoratedSection
-                    )}
-                    title={
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return $queries.query.data.response.data.user_by_pk
-                              .expenses[1].id;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "\u57fa\u672c\u60c5\u5831";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    }
-                  >
-                    {(_par =>
-                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                      (() => {
+                  {(() => {
+                    const child$Props = {
+                      className: classNames("__wab_instance", sty.form),
+                      extendedOnValuesChange:
+                        p.generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "value",
+                          ["form", "value"],
+                          FormWrapper_Helpers
+                        ),
+                      formItems: [
+                        { label: "Name", name: "name", inputType: "Text" },
+                        {
+                          label: "Message",
+                          name: "message",
+                          inputType: "Text Area"
+                        }
+                      ],
+                      initialValues: (() => {
                         try {
-                          return [
-                            [
-                              "発行日",
-                              $queries.query.data.response.data.user_by_pk.expenses[1].issued_at.replace(
-                                /-/g,
-                                "/"
-                              )
-                            ],
-                            [
-                              "金額",
-                              $queries.query.data.response.data.user_by_pk
-                                .expenses[1].amount
-                            ],
-                            [
-                              "申請者",
-                              $queries.query.data.response.data.user_by_pk.name
-                            ],
-                            [
-                              "申請日",
-                              new Date(
-                                $queries.query.data.response.data.user_by_pk.expenses[1].created_at
-                              ).toLocaleDateString()
-                            ],
-                            [
-                              "経費の説明",
-                              $queries.query.data.response.data.user_by_pk
-                                .expenses[1].detail.description
-                            ],
-                            [
-                              "登録番号",
-                              $queries.query.data.response.data.user_by_pk
-                                .expenses[1].detail.issuerRegId || "未記入"
-                            ],
-                            [
-                              "領収書",
-                              `<img src="data:image/png;base64,${$queries.query.data.response.data.user_by_pk.expenses[1].attachments[0].contents}" alt="領収書" width="300" height="300">`
-                            ]
-                          ];
+                          return {
+                            title:
+                              $queries.query.data.response.data.expense_by_pk
+                                .title,
+                            issued_at:
+                              $queries.query.data.response.data.expense_by_pk
+                                .issued_at,
+                            name: $queries.query.data.response.data
+                              .expense_by_pk.user.name,
+                            issuerRegId:
+                              $queries.query.data.response.data.expense_by_pk
+                                .detail.issuerRegId,
+                            amount:
+                              $queries.query.data.response.data.expense_by_pk
+                                .amount,
+                            taxRate:
+                              $queries.query.data.response.data.expense_by_pk
+                                .taxRate,
+                            description:
+                              $queries.query.data.response.data.expense_by_pk
+                                .detail.description,
+                            attachments:
+                              $queries.query.data.response.data.expense_by_pk
+                                .attachments
+                          };
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return [];
+                            return undefined;
                           }
                           throw e;
                         }
-                      })()
-                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                      const currentItem = __plasmic_item_0;
-                      const currentIndex = __plasmic_idx_0;
-                      return (
-                        <KvItem
-                          data-plasmic-name={"kvItem"}
-                          data-plasmic-override={overrides.kvItem}
-                          className={classNames("__wab_instance", sty.kvItem)}
-                          key={currentIndex}
-                          label={
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return currentItem[0];
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "\u30ad\u30fc\u540d";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          }
+                      })(),
+                      labelCol: { span: 8, horizontalOnly: true },
+                      layout: "vertical",
+                      mode: "advanced",
+                      onIsSubmittingChange:
+                        p.generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "isSubmitting",
+                          ["form", "isSubmitting"],
+                          FormWrapper_Helpers
+                        ),
+                      ref: ref => {
+                        $refs["form"] = ref;
+                      },
+                      submitSlot: null,
+                      wrapperCol: { span: 16, horizontalOnly: true }
+                    };
+                    p.initializeCodeComponentStates(
+                      $state,
+                      [
+                        {
+                          name: "value",
+                          plasmicStateName: "form.value"
+                        },
+                        {
+                          name: "isSubmitting",
+                          plasmicStateName: "form.isSubmitting"
+                        }
+                      ],
+                      [],
+                      FormWrapper_Helpers ?? {},
+                      child$Props
+                    );
+
+                    return (
+                      <FormWrapper
+                        data-plasmic-name={"form"}
+                        data-plasmic-override={overrides.form}
+                        {...child$Props}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__lrDBe
+                          )}
                         >
-                          <div
-                            className={projectcss.__wab_expr_html_text}
-                            dangerouslySetInnerHTML={{
-                              __html: (() => {
-                                try {
-                                  return currentItem[1];
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c\u30d0\u30ea\u30e5\u30fc\u540d\u304c";
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField___9KPKk
+                            )}
+                            hidden={false}
+                            label={"\u30bf\u30a4\u30c8\u30eb"}
+                            name={"title"}
+                            rules={[
+                              {
+                                ruleType: "required",
+                                message: "\u5165\u529b\u5fc5\u9808\u3067\u3059"
+                              }
+                            ]}
+                            validateTrigger={["onSubmit"]}
+                          >
+                            {(() => {
+                              const child$Props = {
+                                className: classNames(
+                                  "__wab_instance",
+                                  sty.titleInput
+                                ),
+                                onChange:
+                                  p.generateStateOnChangePropForCodeComponents(
+                                    $state,
+                                    "value",
+                                    ["titleInput", "value"],
+                                    AntdInput_Helpers
+                                  ),
+                                placeholder:
+                                  "\u7d4c\u8cbb\u7533\u8acb\u306b\u308f\u304b\u308a\u3084\u3059\u3044\u898b\u51fa\u3057\u3092\u4ed8\u3051\u3066\u8b58\u5225\u3057\u3084\u3059\u304f\u3057\u307e\u3057\u3087\u3046",
+                                size: "middle",
+                                value: p.generateStateValueProp($state, [
+                                  "titleInput",
+                                  "value"
+                                ])
+                              };
+                              p.initializeCodeComponentStates(
+                                $state,
+                                [
+                                  {
+                                    name: "value",
+                                    plasmicStateName: "titleInput.value"
                                   }
-                                  throw e;
-                                }
-                              })()
+                                ],
+                                [],
+                                AntdInput_Helpers ?? {},
+                                child$Props
+                              );
+
+                              return (
+                                <AntdInput
+                                  data-plasmic-name={"titleInput"}
+                                  data-plasmic-override={overrides.titleInput}
+                                  {...child$Props}
+                                />
+                              );
+                            })()}
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__uex3K
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__pB0Iy
+                                )}
+                              >
+                                {"\u767a\u884c\u65e5"}
+                              </div>
+                            }
+                            name={"issued_at"}
+                            rules={[{ ruleType: "required" }]}
+                          >
+                            {(() => {
+                              const child$Props = {
+                                bordered: true,
+                                className: classNames(
+                                  "__wab_instance",
+                                  sty.dateInput
+                                ),
+                                onChange:
+                                  p.generateStateOnChangePropForCodeComponents(
+                                    $state,
+                                    "value",
+                                    ["dateInput", "value"],
+                                    AntdInput_Helpers
+                                  ),
+                                size: "large",
+                                type: "date",
+                                value: p.generateStateValueProp($state, [
+                                  "dateInput",
+                                  "value"
+                                ])
+                              };
+                              p.initializeCodeComponentStates(
+                                $state,
+                                [
+                                  {
+                                    name: "value",
+                                    plasmicStateName: "dateInput.value"
+                                  }
+                                ],
+                                [],
+                                AntdInput_Helpers ?? {},
+                                child$Props
+                              );
+
+                              return (
+                                <AntdInput
+                                  data-plasmic-name={"dateInput"}
+                                  data-plasmic-override={overrides.dateInput}
+                                  {...child$Props}
+                                />
+                              );
+                            })()}
+                          </FormItemWrapper>
+                          <p.Stack
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__ukGth
+                            )}
+                          >
+                            <FormItemWrapper
+                              className={classNames(
+                                "__wab_instance",
+                                sty.formField___1Y1Gm
+                              )}
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__yxhdi
+                                  )}
+                                >
+                                  {"\u767a\u884c\u8005"}
+                                </div>
+                              }
+                              name={"name"}
+                              rules={[{ ruleType: "required" }]}
+                            >
+                              {(() => {
+                                const child$Props = {
+                                  className: classNames(
+                                    "__wab_instance",
+                                    sty.nameInput
+                                  ),
+                                  onChange:
+                                    p.generateStateOnChangePropForCodeComponents(
+                                      $state,
+                                      "value",
+                                      ["nameInput", "value"],
+                                      AntdInput_Helpers
+                                    ),
+                                  size: "middle",
+                                  value: p.generateStateValueProp($state, [
+                                    "nameInput",
+                                    "value"
+                                  ])
+                                };
+                                p.initializeCodeComponentStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "value",
+                                      plasmicStateName: "nameInput.value"
+                                    }
+                                  ],
+                                  [],
+                                  AntdInput_Helpers ?? {},
+                                  child$Props
+                                );
+
+                                return (
+                                  <AntdInput
+                                    data-plasmic-name={"nameInput"}
+                                    data-plasmic-override={overrides.nameInput}
+                                    {...child$Props}
+                                  />
+                                );
+                              })()}
+                            </FormItemWrapper>
+                            <FormItemWrapper
+                              className={classNames(
+                                "__wab_instance",
+                                sty.formField___5FNgv
+                              )}
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__ab7Um
+                                  )}
+                                >
+                                  {"\u767b\u9332\u756a\u53f7"}
+                                </div>
+                              }
+                              name={"issuerRegId"}
+                              validateTrigger={["onSubmit"]}
+                            >
+                              {(() => {
+                                const child$Props = {
+                                  addonBefore: null,
+                                  bordered: true,
+                                  className: classNames(
+                                    "__wab_instance",
+                                    sty.numInput
+                                  ),
+                                  onChange:
+                                    p.generateStateOnChangePropForCodeComponents(
+                                      $state,
+                                      "value",
+                                      ["numInput", "value"],
+                                      AntdInput_Helpers
+                                    ),
+                                  placeholder:
+                                    "\u30a4\u30f3\u30dc\u30a4\u30b9\u756a\u53f7\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+                                  size: "middle",
+                                  type: "text",
+                                  value: p.generateStateValueProp($state, [
+                                    "numInput",
+                                    "value"
+                                  ])
+                                };
+                                p.initializeCodeComponentStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "value",
+                                      plasmicStateName: "numInput.value"
+                                    }
+                                  ],
+                                  [],
+                                  AntdInput_Helpers ?? {},
+                                  child$Props
+                                );
+
+                                return (
+                                  <AntdInput
+                                    data-plasmic-name={"numInput"}
+                                    data-plasmic-override={overrides.numInput}
+                                    {...child$Props}
+                                  />
+                                );
+                              })()}
+                            </FormItemWrapper>
+                          </p.Stack>
+                          <p.Stack
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__yXak
+                            )}
+                          >
+                            <FormItemWrapper
+                              className={classNames(
+                                "__wab_instance",
+                                sty.formField__nRg3L
+                              )}
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text___06MJg
+                                  )}
+                                >
+                                  {"\u91d1\u984d"}
+                                </div>
+                              }
+                              name={"amount"}
+                              rules={[{ ruleType: "required" }]}
+                              validateTrigger={["onSubmit"]}
+                            >
+                              {(() => {
+                                const child$Props = {
+                                  addonBefore: (
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__nv8V
+                                      )}
+                                    >
+                                      {"\uffe5"}
+                                    </div>
+                                  ),
+                                  bordered: true,
+                                  className: classNames(
+                                    "__wab_instance",
+                                    sty.amountInput
+                                  ),
+                                  onChange:
+                                    p.generateStateOnChangePropForCodeComponents(
+                                      $state,
+                                      "value",
+                                      ["amountInput", "value"],
+                                      AntdInput_Helpers
+                                    ),
+                                  placeholder: "\u7a0e\u8fbc\u91d1\u984d",
+                                  size: "large",
+                                  type: "number",
+                                  value: p.generateStateValueProp($state, [
+                                    "amountInput",
+                                    "value"
+                                  ])
+                                };
+                                p.initializeCodeComponentStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "value",
+                                      plasmicStateName: "amountInput.value"
+                                    }
+                                  ],
+                                  [],
+                                  AntdInput_Helpers ?? {},
+                                  child$Props
+                                );
+
+                                return (
+                                  <AntdInput
+                                    data-plasmic-name={"amountInput"}
+                                    data-plasmic-override={
+                                      overrides.amountInput
+                                    }
+                                    {...child$Props}
+                                  />
+                                );
+                              })()}
+                            </FormItemWrapper>
+                            <FormItemWrapper
+                              className={classNames(
+                                "__wab_instance",
+                                sty.formField__niVrA
+                              )}
+                              initialValue={``}
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__nzPst
+                                  )}
+                                >
+                                  {"\u7a0e\u533a\u5206"}
+                                </div>
+                              }
+                              name={"taxRate"}
+                              rules={[{ ruleType: "required" }]}
+                            >
+                              <AntdSelect
+                                data-plasmic-name={"taxInput"}
+                                data-plasmic-override={overrides.taxInput}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.taxInput
+                                )}
+                                defaultStylesClassName={classNames(
+                                  projectcss.root_reset,
+                                  projectcss.plasmic_default_styles,
+                                  projectcss.plasmic_mixins,
+                                  projectcss.plasmic_tokens,
+                                  plasmic_antd_5_hostless_css.plasmic_tokens,
+                                  plasmic_plasmic_rich_components_css.plasmic_tokens
+                                )}
+                                onChange={p.generateStateOnChangeProp($state, [
+                                  "taxInput",
+                                  "value"
+                                ])}
+                                options={(() => {
+                                  const __composite = [
+                                    { type: null, label: null, value: null },
+                                    { type: "option", value: null, label: null }
+                                  ];
+                                  __composite["0"]["type"] = "option";
+                                  __composite["0"]["label"] = "10%";
+                                  __composite["0"]["value"] = "ten";
+                                  __composite["1"]["value"] = "eight";
+                                  __composite["1"]["label"] = "8%";
+                                  return __composite;
+                                })()}
+                                placeholder={"Select..."}
+                                popupScopeClassName={sty["taxInput__popup"]}
+                                size={"large"}
+                                value={p.generateStateValueProp($state, [
+                                  "taxInput",
+                                  "value"
+                                ])}
+                              />
+                            </FormItemWrapper>
+                          </p.Stack>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__xF6Go
+                            )}
+                            label={"\u7d4c\u8cbb\u306e\u8a73\u7d30"}
+                            name={"description"}
+                            rules={[{ ruleType: "required" }]}
+                            validateTrigger={["onSubmit"]}
+                          >
+                            {(() => {
+                              const child$Props = {
+                                containerClassName: classNames(
+                                  "__wab_instance",
+                                  sty.descriptionInput
+                                ),
+                                onChange:
+                                  p.generateStateOnChangePropForCodeComponents(
+                                    $state,
+                                    "value",
+                                    ["descriptionInput", "value"],
+                                    Quill_Helpers
+                                  ),
+                                placeholder:
+                                  "\u3053\u306e\u7d4c\u8cbb\u7533\u8acb\u306b\u3064\u3044\u3066\u8aac\u660e\u3057\u307e\u3057\u3087\u3046\u3002\u7279\u306b\u30015W1H\u3084\u72b6\u6cc1\u8aac\u660e\u3092\u8a18\u8ff0\u3059\u308b\u3068\u826f\u3044\u3067\u3059\u3002",
+                                preserveWhitespace: true,
+                                readOnly: false,
+                                toolbar: (() => {
+                                  const __composite = {
+                                    textStyle: [
+                                      "bold",
+                                      "italic",
+                                      "underline",
+                                      "strikethrough"
+                                    ],
+                                    colors: ["text color", "text background"],
+                                    script: true,
+                                    fontFamily: true,
+                                    heading: [
+                                      "Heading 1",
+                                      "Heading 2",
+                                      "Heading 3",
+                                      "Heading 4",
+                                      "Heading 5",
+                                      "Heading 6",
+                                      "Body"
+                                    ],
+                                    fontSizes: [
+                                      "small",
+                                      "medium",
+                                      "large",
+                                      "huge"
+                                    ],
+                                    formatting: [
+                                      "alignment",
+                                      "list",
+                                      "indentation",
+                                      "text direction",
+                                      "clear formatting"
+                                    ],
+                                    inputTypes: null
+                                  };
+                                  __composite["inputTypes"] = [
+                                    "link",
+                                    "blockquote",
+                                    "code-block"
+                                  ];
+                                  return __composite;
+                                })(),
+                                value: p.generateStateValueProp($state, [
+                                  "descriptionInput",
+                                  "value"
+                                ])
+                              };
+                              p.initializeCodeComponentStates(
+                                $state,
+                                [
+                                  {
+                                    name: "value",
+                                    plasmicStateName: "descriptionInput.value"
+                                  }
+                                ],
+                                [],
+                                Quill_Helpers ?? {},
+                                child$Props
+                              );
+
+                              return (
+                                <Quill
+                                  data-plasmic-name={"descriptionInput"}
+                                  data-plasmic-override={
+                                    overrides.descriptionInput
+                                  }
+                                  {...child$Props}
+                                />
+                              );
+                            })()}
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__rt5DH
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__iY61G
+                                )}
+                              >
+                                {"\u9818\u53ce\u66f8\u3092\u6dfb\u4ed8"}
+                              </div>
+                            }
+                            name={"attachments"}
+                            preserve={true}
+                            rules={[{ ruleType: "required" }]}
+                            validateTrigger={["onSubmit"]}
+                          >
+                            <UploadWrapper
+                              data-plasmic-name={"attachments"}
+                              data-plasmic-override={overrides.attachments}
+                              accept={""}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.attachments
+                              )}
+                              dragAndDropFiles={true}
+                              files={p.generateStateValueProp($state, [
+                                "attachments",
+                                "files"
+                              ])}
+                              listType={"picture-card"}
+                              maxCount={4}
+                              multiple={true}
+                              onFilesChange={p.generateStateOnChangeProp(
+                                $state,
+                                ["attachments", "files"]
+                              )}
+                              showUploadList={true}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__qbxgn
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__lShSh
+                                  )}
+                                >
+                                  {
+                                    "\u30c9\u30e9\u30c3\u30b0\u30fb\u30a2\u30f3\u30c9\u30fb\u30c9\u30ed\u30c3\u30d7 \u307e\u305f\u306f"
+                                  }
+                                </div>
+                                <AntdButton
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.button__o5HWg
+                                  )}
+                                  size={"large"}
+                                >
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__t4J4R
+                                    )}
+                                  >
+                                    {
+                                      "\u30d5\u30a1\u30a4\u30eb\u3092\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9"
+                                    }
+                                  </div>
+                                </AntdButton>
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__rvz5A
+                                  )}
+                                >
+                                  {
+                                    "\u5bfe\u5fdc\u30d5\u30a1\u30a4\u30eb\u5f62\u5f0f: JPEG, PDF"
+                                  }
+                                </div>
+                              </div>
+                            </UploadWrapper>
+                          </FormItemWrapper>
+                          <Button
+                            className={classNames(
+                              "__wab_instance",
+                              sty.button__klS0I
+                            )}
+                            color={"primaryLt"}
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["runActionOnForm"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      tplRef: "form",
+                                      action: "validateFields"
+                                    };
+                                    return (({ tplRef, action, args }) => {
+                                      return $refs?.[tplRef]?.[action]?.(
+                                        ...(args ?? [])
+                                      );
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["runActionOnForm"] != null &&
+                                typeof $steps["runActionOnForm"] === "object" &&
+                                typeof $steps["runActionOnForm"].then ===
+                                  "function"
+                              ) {
+                                $steps["runActionOnForm"] = await $steps[
+                                  "runActionOnForm"
+                                ];
+                              }
                             }}
-                          />
-                        </KvItem>
-                      );
-                    })}
-                  </DecoratedSection>
+                            submitsForm={false}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__iAaeJ
+                              )}
+                            >
+                              {"\u7de8\u96c6"}
+                            </div>
+                          </Button>
+                        </div>
+                      </FormWrapper>
+                    );
+                  })()}
                 </div>
               )}
             </ph.DataCtxReader>
@@ -311,11 +1027,50 @@ function PlasmicHistoryDetail__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "layout", "freeBox", "decoratedSection", "kvItem"],
-  layout: ["layout", "freeBox", "decoratedSection", "kvItem"],
-  freeBox: ["freeBox", "decoratedSection", "kvItem"],
-  decoratedSection: ["decoratedSection", "kvItem"],
-  kvItem: ["kvItem"]
+  root: [
+    "root",
+    "layout",
+    "form",
+    "titleInput",
+    "dateInput",
+    "nameInput",
+    "numInput",
+    "amountInput",
+    "taxInput",
+    "descriptionInput",
+    "attachments"
+  ],
+  layout: [
+    "layout",
+    "form",
+    "titleInput",
+    "dateInput",
+    "nameInput",
+    "numInput",
+    "amountInput",
+    "taxInput",
+    "descriptionInput",
+    "attachments"
+  ],
+  form: [
+    "form",
+    "titleInput",
+    "dateInput",
+    "nameInput",
+    "numInput",
+    "amountInput",
+    "taxInput",
+    "descriptionInput",
+    "attachments"
+  ],
+  titleInput: ["titleInput"],
+  dateInput: ["dateInput"],
+  nameInput: ["nameInput"],
+  numInput: ["numInput"],
+  amountInput: ["amountInput"],
+  taxInput: ["taxInput"],
+  descriptionInput: ["descriptionInput"],
+  attachments: ["attachments"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -323,9 +1078,15 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   layout: typeof Layout;
-  freeBox: "div";
-  decoratedSection: typeof DecoratedSection;
-  kvItem: typeof KvItem;
+  form: typeof FormWrapper;
+  titleInput: typeof AntdInput;
+  dateInput: typeof AntdInput;
+  nameInput: typeof AntdInput;
+  numInput: typeof AntdInput;
+  amountInput: typeof AntdInput;
+  taxInput: typeof AntdSelect;
+  descriptionInput: typeof Quill;
+  attachments: typeof UploadWrapper;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -389,9 +1150,15 @@ export const PlasmicHistoryDetail = Object.assign(
   {
     // Helper components rendering sub-elements
     layout: makeNodeComponent("layout"),
-    freeBox: makeNodeComponent("freeBox"),
-    decoratedSection: makeNodeComponent("decoratedSection"),
-    kvItem: makeNodeComponent("kvItem"),
+    form: makeNodeComponent("form"),
+    titleInput: makeNodeComponent("titleInput"),
+    dateInput: makeNodeComponent("dateInput"),
+    nameInput: makeNodeComponent("nameInput"),
+    numInput: makeNodeComponent("numInput"),
+    amountInput: makeNodeComponent("amountInput"),
+    taxInput: makeNodeComponent("taxInput"),
+    descriptionInput: makeNodeComponent("descriptionInput"),
+    attachments: makeNodeComponent("attachments"),
 
     // Metadata about props expected for PlasmicHistoryDetail
     internalVariantProps: PlasmicHistoryDetail__VariantProps,

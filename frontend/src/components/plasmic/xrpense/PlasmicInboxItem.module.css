@@ -178,63 +178,63 @@
 .slotTargetTitleunread {
   font-weight: 700;
 }
-.slotTargetUpdateAt {
+.slotTargetUpdatedAt {
   user-select: none;
   white-space: pre;
 }
-.slotTargetUpdateAt > :global(.__wab_text),
-.slotTargetUpdateAt > :global(.__wab_expr_html_text),
-.slotTargetUpdateAt > :global(.__wab_slot-string-wrapper),
-.slotTargetUpdateAt > :global(.__wab_slot) > :global(.__wab_text),
-.slotTargetUpdateAt > :global(.__wab_slot) > :global(.__wab_expr_html_text),
-.slotTargetUpdateAt
+.slotTargetUpdatedAt > :global(.__wab_text),
+.slotTargetUpdatedAt > :global(.__wab_expr_html_text),
+.slotTargetUpdatedAt > :global(.__wab_slot-string-wrapper),
+.slotTargetUpdatedAt > :global(.__wab_slot) > :global(.__wab_text),
+.slotTargetUpdatedAt > :global(.__wab_slot) > :global(.__wab_expr_html_text),
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot-string-wrapper),
-.slotTargetUpdateAt
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_text),
-.slotTargetUpdateAt
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_expr_html_text),
-.slotTargetUpdateAt
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_slot-string-wrapper),
-.slotTargetUpdateAt
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_text),
-.slotTargetUpdateAt
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_expr_html_text),
-.slotTargetUpdateAt
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_slot-string-wrapper) {
   text-overflow: ellipsis;
 }
-.slotTargetUpdateAt > *,
-.slotTargetUpdateAt > :global(.__wab_slot) > *,
-.slotTargetUpdateAt > :global(.__wab_slot) > :global(.__wab_slot) > *,
-.slotTargetUpdateAt
+.slotTargetUpdatedAt > *,
+.slotTargetUpdatedAt > :global(.__wab_slot) > *,
+.slotTargetUpdatedAt > :global(.__wab_slot) > :global(.__wab_slot) > *,
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > *,
-.slotTargetUpdateAt > picture > img,
-.slotTargetUpdateAt > :global(.__wab_slot) > picture > img,
-.slotTargetUpdateAt
+.slotTargetUpdatedAt > picture > img,
+.slotTargetUpdatedAt > :global(.__wab_slot) > picture > img,
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > picture
   > img,
-.slotTargetUpdateAt
+.slotTargetUpdatedAt
   > :global(.__wab_slot)
   > :global(.__wab_slot)
   > :global(.__wab_slot)
@@ -246,7 +246,7 @@
   -webkit-transition-property: all;
   -webkit-transition-duration: 1s;
 }
-.slotTargetUpdateAtunread {
+.slotTargetUpdatedAtunread {
   font-weight: 700;
 }
 .freeBox___4EzJx {

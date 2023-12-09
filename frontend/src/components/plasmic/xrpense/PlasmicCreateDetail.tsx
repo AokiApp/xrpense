@@ -618,6 +618,11 @@ function PlasmicCreateDetail__RenderFunc(props: {
                               "confirming",
                               "confirming"
                             ),
+                            [sty.freeBoxtype_consumable__afwq9EEix]: hasVariant(
+                              $state,
+                              "type",
+                              "consumable"
+                            ),
                             [sty.freeBoxtype_travel_confirming__afwqQzfClRyCqN]:
                               hasVariant($state, "type", "travel") &&
                               hasVariant($state, "confirming", "confirming")
@@ -1406,7 +1411,19 @@ function PlasmicCreateDetail__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.__wab_text,
-                            sty.text__ehNHd
+                            sty.text__ehNHd,
+                            {
+                              [sty.textconfirming__ehNHdryCqN]: hasVariant(
+                                $state,
+                                "confirming",
+                                "confirming"
+                              ),
+                              [sty.texttype_consumable__ehNHd9EEix]: hasVariant(
+                                $state,
+                                "type",
+                                "consumable"
+                              )
+                            }
                           )}
                         >
                           <React.Fragment>
@@ -1425,7 +1442,11 @@ function PlasmicCreateDetail__RenderFunc(props: {
                         <KvItem
                           className={classNames(
                             "__wab_instance",
-                            sty.kvItem__tqvPl
+                            sty.kvItem__tqvPl,
+                            {
+                              [sty.kvItemtype_consumable__tqvPl9EEix]:
+                                hasVariant($state, "type", "consumable")
+                            }
                           )}
                           label={
                             <div
@@ -1459,7 +1480,11 @@ function PlasmicCreateDetail__RenderFunc(props: {
                         <KvItem
                           className={classNames(
                             "__wab_instance",
-                            sty.kvItem__wWAzg
+                            sty.kvItem__wWAzg,
+                            {
+                              [sty.kvItemtype_consumable__wWAzg9EEix]:
+                                hasVariant($state, "type", "consumable")
+                            }
                           )}
                           label={"\u767a\u884c\u65e5"}
                           noCopy={true}

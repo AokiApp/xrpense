@@ -73,6 +73,7 @@ export const PlasmicSignIn__ArgProps = new Array<ArgPropType>("msg", "onLogin");
 
 export type PlasmicSignIn__OverridesType = {
   root?: p.Flex<"div">;
+  button?: p.Flex<typeof Button>;
 };
 
 export interface DefaultSignInProps {}
@@ -199,17 +200,11 @@ function PlasmicSignIn__RenderFunc(props: {
               </div>
             </div>
             <Button
-              className={classNames("__wab_instance", sty.button__iaVXm, {
-                [sty.buttonerror__iaVXml8US3]: hasVariant(
-                  $state,
-                  "error",
-                  "error"
-                ),
-                [sty.buttonloading__iaVXmJwuHy]: hasVariant(
-                  $state,
-                  "loading",
-                  "loading"
-                )
+              data-plasmic-name={"button"}
+              data-plasmic-override={overrides.button}
+              className={classNames("__wab_instance", sty.button, {
+                [sty.buttonerror]: hasVariant($state, "error", "error"),
+                [sty.buttonloading]: hasVariant($state, "loading", "loading")
               })}
               color={"primaryLt"}
               isDisabled={
@@ -247,61 +242,98 @@ function PlasmicSignIn__RenderFunc(props: {
                 )}
               >
                 {
-                  "XRPL\u30a2\u30ab\u30a6\u30f3\u30c8\u3067\u30ed\u30b0\u30a4\u30f3"
+                  "\u4f01\u696d\u30a2\u30ab\u30a6\u30f3\u30c8\u3067\u30b7\u30f3\u30b0\u30eb\u30b5\u30a4\u30f3\u30aa\u30f3"
                 }
               </div>
             </Button>
-            <Button
-              className={classNames("__wab_instance", sty.button__rHmo6, {
-                [sty.buttonerror__rHmo6L8US3]: hasVariant(
-                  $state,
-                  "error",
-                  "error"
-                ),
-                [sty.buttonloading__rHmo6JwuHy]: hasVariant(
-                  $state,
-                  "loading",
-                  "loading"
-                )
-              })}
-              color={"link"}
-              isDisabled={
-                hasVariant($state, "loading", "loading") ? true : undefined
-              }
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["runCode"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return $props.onLogin("entraid");
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
-                ) {
-                  $steps["runCode"] = await $steps["runCode"];
-                }
-              }}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__swEbL
-                )}
+            <div className={classNames(projectcss.all, sty.freeBox__vlJQ)}>
+              <p.Stack
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__y9ZyL)}
               >
-                {"Microsoft Entra ID\u3067\u30b5\u30a4\u30f3\u30a4\u30f3"}
-              </div>
-            </Button>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dKd4B
+                  )}
+                >
+                  {"Powered by"}
+                </div>
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img__iw9Fp)}
+                  displayHeight={"40px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"none"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/xrpense/images/image2.png",
+                    fullWidth: 1018,
+                    fullHeight: 192,
+                    aspectRatio: undefined
+                  }}
+                />
+
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img__lHBzH)}
+                  displayHeight={"40px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"none"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/xrpense/images/azureActiveDirectorysvg.svg",
+                    fullWidth: 149,
+                    fullHeight: 150,
+                    aspectRatio: 0.992579
+                  }}
+                />
+
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img__dPfEv)}
+                  displayHeight={"40px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/xrpense/images/image3.png",
+                    fullWidth: 2000,
+                    fullHeight: 2000,
+                    aspectRatio: undefined
+                  }}
+                />
+
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img__kap3Z)}
+                  displayHeight={"40px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/xrpense/images/image4.webp",
+                    fullWidth: 720,
+                    fullHeight: 333,
+                    aspectRatio: undefined
+                  }}
+                />
+              </p.Stack>
+            </div>
             <div
               className={classNames(
                 projectcss.all,
@@ -321,13 +353,15 @@ function PlasmicSignIn__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "button"],
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -390,6 +424,7 @@ export const PlasmicSignIn = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicSignIn
     internalVariantProps: PlasmicSignIn__VariantProps,

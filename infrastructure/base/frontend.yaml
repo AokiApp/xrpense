@@ -54,7 +54,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: xrpense.mynumber.dev
+    - host: xrpense.kintaman.ai
       http:
         paths:
           - path: /

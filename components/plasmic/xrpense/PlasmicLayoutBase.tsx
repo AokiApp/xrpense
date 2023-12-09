@@ -173,28 +173,13 @@ function PlasmicLayoutBase__RenderFunc(props: {
           : (() => {
               const __composite = [
                 { path: "/", name: null },
-                { name: null, routes: null, path: null },
+                { name: null, path: null },
                 { name: null, path: null },
                 { name: null, path: null },
                 { name: null, path: null }
               ];
               __composite["0"]["name"] = "\u30db\u30fc\u30e0";
               __composite["1"]["name"] = "\u7d4c\u8cbb\u7533\u8acb";
-              __composite["1"]["routes"] = (() => {
-                const __composite = [
-                  {},
-                  { name: null, path: null },
-                  { name: null, path: null },
-                  { name: null, path: null }
-                ];
-                __composite["1"]["name"] = "\u4ea4\u901a\u8cbb";
-                __composite["1"]["path"] = "/create/detail?type=travel";
-                __composite["2"]["name"] = "\u4f1a\u8b70\u8cbb";
-                __composite["2"]["path"] = "/create/detail?type=convention";
-                __composite["3"]["name"] = "\u6d88\u8017\u54c1\u8cbb";
-                __composite["3"]["path"] = "/create/detail?type=consumable";
-                return __composite;
-              })();
               __composite["1"]["path"] = `/create`;
               __composite["2"]["name"] = "\u7533\u8acb\u5c65\u6b74";
               __composite["2"]["path"] = `/history`;

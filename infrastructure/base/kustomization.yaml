@@ -1,0 +1,8 @@
+namespace: aokiapp-xrpense
+
+commonLabels:
+  org: aokiapp
+  project: xrpense
+
+resources:
+  - frontend.yaml

@@ -1,0 +1,13 @@
+namespace: aokiapp-xrpense
+
+resources:
+  - ../../base
+
+configMapGenerator:
+  - name: xrpense-be-config
+    files:
+      - config.yaml
+images:
+  - name: frontend
+    newName: ghcr.io/aokiapp/xrpense/frontend
+    newTag: b-main

@@ -16,6 +16,7 @@
     "@plasmicpkgs/antd5": "^0.0.199",
     "@plasmicpkgs/plasmic-basic-components": "^0.0.204",
     "@plasmicpkgs/plasmic-rich-components": "^1.0.171",
+    "@plasmicpkgs/react-quill": "^1.0.42",
     "@plasmicpkgs/react-slick": "^0.0.205",
     "next": "14.0.4",
     "react": "^18",

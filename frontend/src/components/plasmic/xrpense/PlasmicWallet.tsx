@@ -37,9 +37,11 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import Layout from "../../Layout"; // plasmic-import: 8kcWfTTW5pIG/component
-import KvItem from "../../KvItem"; // plasmic-import: Haxw2MIMlmpq/component
-import DecoratedSection from "../../DecoratedSection"; // plasmic-import: TLGCmAakJkGm/component
-import IconButton from "../../IconButton"; // plasmic-import: c6xa4h_PpvrO/component
+import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
+import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
+import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
+import Copilot from "../../Copilot"; // plasmic-import: 3QoQepU800a-/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -48,9 +50,8 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic_xrpense.module.css"; // plasmic-import: 4QmempJ4uAWNpTRouKWPHf/projectcss
 import sty from "./PlasmicWallet.module.css"; // plasmic-import: akcNnSFg9qYk/css
 
-import PlusLargeSvgrepoComsvgIcon from "./icons/PlasmicIcon__PlusLargeSvgrepoComsvg"; // plasmic-import: YEPes6dYRRew/icon
-import CompleteIcon from "./icons/PlasmicIcon__Complete"; // plasmic-import: pTJFuCWk8NGr/icon
-import CopySvgrepoComsvgIcon from "./icons/PlasmicIcon__CopySvgrepoComsvg"; // plasmic-import: GHJGyw-ZCuIE/icon
+import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: UPP2br5JFIoC/icon
+import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: tOAoYivXP3sa/icon
 
 createPlasmicElementProxy;
 
@@ -60,22 +61,24 @@ type VariantPropType = keyof PlasmicWallet__VariantsArgs;
 export const PlasmicWallet__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicWallet__ArgsType = {
-  children?: React.ReactNode;
-  children2?: React.ReactNode;
+  onTxSubmit?: (tx_json: string) => void;
+  address?: string;
 };
 type ArgPropType = keyof PlasmicWallet__ArgsType;
 export const PlasmicWallet__ArgProps = new Array<ArgPropType>(
-  "children",
-  "children2"
+  "onTxSubmit",
+  "address"
 );
 
 export type PlasmicWallet__OverridesType = {
   root?: p.Flex<"div">;
   layout?: p.Flex<typeof Layout>;
-  kvItem?: p.Flex<typeof KvItem>;
-  decoratedSection?: p.Flex<typeof DecoratedSection>;
-  iconButton?: p.Flex<typeof IconButton>;
-  copy?: p.Flex<typeof IconButton>;
+  img?: p.Flex<typeof p.PlasmicImg>;
+  form?: p.Flex<typeof FormWrapper>;
+  formField?: p.Flex<typeof FormItemWrapper>;
+  textarea?: p.Flex<"textarea">;
+  copilot?: p.Flex<typeof Copilot>;
+  defaultButton?: p.Flex<typeof DefaultButton>;
 };
 
 export interface DefaultWalletProps {}
@@ -111,6 +114,36 @@ function PlasmicWallet__RenderFunc(props: {
 
   const currentUser = p.useCurrentUser?.() || {};
 
+  const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "form.value",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "form",
+        onMutate: p.generateOnMutateForSpec("value", FormWrapper_Helpers)
+      },
+      {
+        path: "form.isSubmitting",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "form",
+        onMutate: p.generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = p.useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
+
   return (
     <React.Fragment>
       <Head></Head>
@@ -142,154 +175,365 @@ function PlasmicWallet__RenderFunc(props: {
             data-plasmic-name={"layout"}
             data-plasmic-override={overrides.layout}
             className={classNames("__wab_instance", sty.layout)}
-            title={"Wallet\u60c5\u5831\u78ba\u8a8d"}
+            title={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___8IFdZ
+                )}
+              >
+                {"\u30a6\u30a9\u30ec\u30c3\u30c8"}
+              </div>
+            }
           >
             <ph.DataCtxReader>
               {$ctx => (
-                <React.Fragment>
-                  <KvItem
-                    data-plasmic-name={"kvItem"}
-                    data-plasmic-override={overrides.kvItem}
-                    className={classNames("__wab_instance", sty.kvItem)}
-                    label={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__dnhQh
-                        )}
-                      >
-                        {"\u6b8b\u9ad8"}
-                      </div>
-                    }
-                    noCopy={true}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text___4VMfk
-                      )}
-                    >
-                      {"\u7d04XXX\u5186"}
-                    </div>
-                  </KvItem>
-                  <DecoratedSection
-                    data-plasmic-name={"decoratedSection"}
-                    data-plasmic-override={overrides.decoratedSection}
-                    actions={
-                      <IconButton
-                        data-plasmic-name={"iconButton"}
-                        data-plasmic-override={overrides.iconButton}
-                        className={classNames("__wab_instance", sty.iconButton)}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___74Mfk
-                          )}
-                        >
-                          {
-                            "\u30b3\u30a4\u30f3\u306e\u8ffd\u52a0\u306f\u3053\u3053\u304b\u3089"
-                          }
-                        </div>
-                        <PlusLargeSvgrepoComsvgIcon
-                          className={classNames(
-                            projectcss.all,
-                            sty.svg___99Ngz
-                          )}
-                          role={"img"}
-                        />
-                      </IconButton>
-                    }
-                    className={classNames(
-                      "__wab_instance",
-                      sty.decoratedSection
-                    )}
-                    title={"\u30b3\u30a4\u30f3\u306e\u7ba1\u7406"}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__cwmck)}
-                    >
-                      <p.Stack
-                        as={"div"}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___5O9O
-                        )}
-                      >
-                        <CompleteIcon
-                          className={classNames(projectcss.all, sty.svg__ga5Fa)}
-                          role={"img"}
-                        />
+                <div className={classNames(projectcss.all, sty.freeBox__myTq3)}>
+                  <p.PlasmicImg
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"auto"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"auto"}
+                    loading={"lazy"}
+                    src={(() => {
+                      try {
+                        return (
+                          "https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=ripple%3A" +
+                          $props.address
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
 
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__gspp
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $props.address;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  {(() => {
+                    const child$Props = {
+                      className: classNames("__wab_instance", sty.form),
+                      extendedOnValuesChange:
+                        p.generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "value",
+                          ["form", "value"],
+                          FormWrapper_Helpers
+                        ),
+                      formItems: [
+                        { label: "Name", name: "name", inputType: "Text" },
+                        {
+                          label: "Message",
+                          name: "message",
+                          inputType: "Text Area"
+                        }
+                      ],
+                      labelCol: { span: 8, horizontalOnly: true },
+                      layout: "vertical",
+                      mode: "advanced",
+                      onIsSubmittingChange:
+                        p.generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "isSubmitting",
+                          ["form", "isSubmitting"],
+                          FormWrapper_Helpers
+                        ),
+                      ref: ref => {
+                        $refs["form"] = ref;
+                      },
+                      submitSlot: null,
+                      wrapperCol: { span: 16, horizontalOnly: true }
+                    };
+                    p.initializeCodeComponentStates(
+                      $state,
+                      [
+                        {
+                          name: "value",
+                          plasmicStateName: "form.value"
+                        },
+                        {
+                          name: "isSubmitting",
+                          plasmicStateName: "form.isSubmitting"
+                        }
+                      ],
+                      [],
+                      FormWrapper_Helpers ?? {},
+                      child$Props
+                    );
+
+                    return (
+                      <FormWrapper
+                        data-plasmic-name={"form"}
+                        data-plasmic-override={overrides.form}
+                        {...child$Props}
+                      >
+                        <FormItemWrapper
+                          data-plasmic-name={"formField"}
+                          data-plasmic-override={overrides.formField}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField
+                          )}
+                          initialValue={JSON.stringify(
+                            {
+                              TransactionType: "Payment",
+                              Account: $props.address,
+                              Destination: "rBob",
+                              Amount: "0.1",
+                              Memos: [
+                                {
+                                  Memo: {
+                                    MemoType: "Text",
+                                    MemoData:
+                                      "Hello! It's test transaction. Please replace yourself."
+                                  }
+                                }
+                              ]
+                            },
+                            null,
+                            2
+                          )}
+                          label={
+                            "\u30c8\u30e9\u30f3\u30b6\u30af\u30b7\u30e7\u30f3(JSON\u5f62\u5f0f,\u672a\u7f72\u540d)"
+                          }
+                          name={"tx_json"}
+                          rules={[{ ruleType: "required" }]}
+                        >
+                          <textarea
+                            data-plasmic-name={"textarea"}
+                            data-plasmic-override={overrides.textarea}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.textarea,
+                              sty.textarea
+                            )}
+                            placeholder={(() => {
+                              try {
+                                return JSON.stringify(
+                                  {
+                                    TransactionType: "Payment",
+                                    Account: "rAlice",
+                                    Destination: "rBob",
+                                    Amount: "0.1",
+                                    Memos: [
+                                      {
+                                        Memo: {
+                                          MemoType: "Text",
+                                          MemoData:
+                                            "Hello! It's test transaction. Please replace yourself."
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  null,
+                                  2
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                          />
+                        </FormItemWrapper>
                         <p.Stack
                           as={"div"}
                           hasGap={true}
                           className={classNames(
                             projectcss.all,
-                            sty.freeBox__oQWt
+                            sty.freeBox__ft5Sz
                           )}
                         >
-                          {p.renderPlasmicSlot({
-                            defaultContents: (
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__ksEeb
-                                )}
-                              >
-                                {
-                                  "\u30b3\u30a4\u30f3\u540d\u304c\u5165\u308a\u307e\u3059"
-                                }
-                              </div>
-                            ),
-                            value: args.children
-                          })}
-                          <div
+                          <Copilot
+                            data-plasmic-name={"copilot"}
+                            data-plasmic-override={overrides.copilot}
                             className={classNames(
-                              projectcss.all,
-                              sty.freeBox__bBeJ
+                              "__wab_instance",
+                              sty.copilot
                             )}
+                            onGenerate={async result => {
+                              const $steps = {};
+
+                              $steps["runActionOnForm"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      tplRef: "form",
+                                      action: "setFieldValue",
+                                      args: [["tx_json"], result]
+                                    };
+                                    return (({ tplRef, action, args }) => {
+                                      return $refs?.[tplRef]?.[action]?.(
+                                        ...(args ?? [])
+                                      );
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["runActionOnForm"] != null &&
+                                typeof $steps["runActionOnForm"] === "object" &&
+                                typeof $steps["runActionOnForm"].then ===
+                                  "function"
+                              ) {
+                                $steps["runActionOnForm"] = await $steps[
+                                  "runActionOnForm"
+                                ];
+                              }
+                            }}
+                            systemPrompt={(() => {
+                              try {
+                                return $state.form.value.tx_json;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            whatToGen={
+                              "\u30c8\u30e9\u30f3\u30b6\u30af\u30b7\u30e7\u30f3"
+                            }
+                          />
+
+                          <DefaultButton
+                            data-plasmic-name={"defaultButton"}
+                            data-plasmic-override={overrides.defaultButton}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.defaultButton
+                            )}
+                            color={"primaryLt"}
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["updateStateVariable"] = true
+                                ? (() => {
+                                    const actionArgs = {};
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+                                      undefined;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateStateVariable"] != null &&
+                                typeof $steps["updateStateVariable"] ===
+                                  "object" &&
+                                typeof $steps["updateStateVariable"].then ===
+                                  "function"
+                              ) {
+                                $steps["updateStateVariable"] = await $steps[
+                                  "updateStateVariable"
+                                ];
+                              }
+                            }}
+                            submitsForm={true}
                           >
-                            {p.renderPlasmicSlot({
-                              defaultContents: (
-                                <div
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text__ugfJp
-                                  )}
-                                >
-                                  {
-                                    "\u30a2\u30c9\u30ec\u30b9\u304c\u5165\u308a\u307e\u3059"
-                                  }
-                                </div>
-                              ),
-                              value: args.children2
-                            })}
-                            <IconButton
-                              data-plasmic-name={"copy"}
-                              data-plasmic-override={overrides.copy}
-                              className={classNames("__wab_instance", sty.copy)}
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__lSmy
+                              )}
+                              onClick={async event => {
+                                const $steps = {};
+
+                                $steps["runOnTxSubmit"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        eventRef: $props["onTxSubmit"],
+                                        args: [
+                                          (() => {
+                                            try {
+                                              return $state.form.value.tx_json;
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return undefined;
+                                              }
+                                              throw e;
+                                            }
+                                          })()
+                                        ]
+                                      };
+                                      return (({ eventRef, args }) => {
+                                        return eventRef?.(...(args ?? []));
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["runOnTxSubmit"] != null &&
+                                  typeof $steps["runOnTxSubmit"] === "object" &&
+                                  typeof $steps["runOnTxSubmit"].then ===
+                                    "function"
+                                ) {
+                                  $steps["runOnTxSubmit"] = await $steps[
+                                    "runOnTxSubmit"
+                                  ];
+                                }
+                              }}
                             >
-                              <CopySvgrepoComsvgIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__wfpKm
-                                )}
-                                role={"img"}
-                              />
-                            </IconButton>
-                          </div>
+                              {
+                                "\u30c8\u30e9\u30f3\u30b6\u30af\u30b7\u30e7\u30f3\u767a\u884c"
+                              }
+                            </div>
+                          </DefaultButton>
                         </p.Stack>
-                      </p.Stack>
-                    </div>
-                  </DecoratedSection>
-                </React.Fragment>
+                      </FormWrapper>
+                    );
+                  })()}
+                </div>
               )}
             </ph.DataCtxReader>
           </Layout>
@@ -300,12 +544,31 @@ function PlasmicWallet__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "layout", "kvItem", "decoratedSection", "iconButton", "copy"],
-  layout: ["layout", "kvItem", "decoratedSection", "iconButton", "copy"],
-  kvItem: ["kvItem"],
-  decoratedSection: ["decoratedSection", "iconButton", "copy"],
-  iconButton: ["iconButton"],
-  copy: ["copy"]
+  root: [
+    "root",
+    "layout",
+    "img",
+    "form",
+    "formField",
+    "textarea",
+    "copilot",
+    "defaultButton"
+  ],
+  layout: [
+    "layout",
+    "img",
+    "form",
+    "formField",
+    "textarea",
+    "copilot",
+    "defaultButton"
+  ],
+  img: ["img"],
+  form: ["form", "formField", "textarea", "copilot", "defaultButton"],
+  formField: ["formField", "textarea"],
+  textarea: ["textarea"],
+  copilot: ["copilot"],
+  defaultButton: ["defaultButton"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -313,10 +576,12 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   layout: typeof Layout;
-  kvItem: typeof KvItem;
-  decoratedSection: typeof DecoratedSection;
-  iconButton: typeof IconButton;
-  copy: typeof IconButton;
+  img: typeof p.PlasmicImg;
+  form: typeof FormWrapper;
+  formField: typeof FormItemWrapper;
+  textarea: "textarea";
+  copilot: typeof Copilot;
+  defaultButton: typeof DefaultButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -380,10 +645,12 @@ export const PlasmicWallet = Object.assign(
   {
     // Helper components rendering sub-elements
     layout: makeNodeComponent("layout"),
-    kvItem: makeNodeComponent("kvItem"),
-    decoratedSection: makeNodeComponent("decoratedSection"),
-    iconButton: makeNodeComponent("iconButton"),
-    copy: makeNodeComponent("copy"),
+    img: makeNodeComponent("img"),
+    form: makeNodeComponent("form"),
+    formField: makeNodeComponent("formField"),
+    textarea: makeNodeComponent("textarea"),
+    copilot: makeNodeComponent("copilot"),
+    defaultButton: makeNodeComponent("defaultButton"),
 
     // Metadata about props expected for PlasmicWallet
     internalVariantProps: PlasmicWallet__VariantProps,

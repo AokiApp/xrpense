@@ -119,13 +119,15 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  padding: 0px;
 }
 .freeBox__uefP4 {
   display: flex;
   background: var(--token--BMEyZEX6vxW);
   width: 100%;
-  max-width: 80%;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: auto;
+  flex-direction: column;
   min-width: 0;
   border-radius: 8px;
   padding: 8px;
@@ -140,8 +142,7 @@
 .defaultButton__sPtha:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
-  width: 100%;
-  min-width: 0;
+  width: auto;
 }
 .svg___7Tbu3 {
   position: relative;

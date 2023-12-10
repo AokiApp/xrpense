@@ -203,6 +203,7 @@ function PlasmicLayoutBase__RenderFunc(props: {
                 { name: null, path: null },
                 { name: null, path: null },
                 { name: null, path: null },
+                { path: null, name: null },
                 { name: null, path: null }
               ];
               __composite["0"]["name"] = "\u30db\u30fc\u30e0";
@@ -212,8 +213,10 @@ function PlasmicLayoutBase__RenderFunc(props: {
               __composite["2"]["path"] = `/history`;
               __composite["3"]["name"] = "\u304a\u5ba2\u69d8\u60c5\u5831";
               __composite["3"]["path"] = `/customer`;
-              __composite["4"]["name"] = "\u30b5\u30a4\u30f3\u30a2\u30a6\u30c8";
-              __composite["4"]["path"] = `/signout`;
+              __composite["4"]["path"] = `/wallet`;
+              __composite["4"]["name"] = "\u30a6\u30a9\u30ec\u30c3\u30c8";
+              __composite["5"]["name"] = "\u30b5\u30a4\u30f3\u30a2\u30a6\u30c8";
+              __composite["5"]["path"] = `/signout`;
               return __composite;
             })()
       }

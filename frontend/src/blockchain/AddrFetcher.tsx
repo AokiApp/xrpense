@@ -1,10 +1,27 @@
-import { ReactNode, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { web3auth } from ".";
-import { ADAPTER_EVENTS } from "@web3auth/base";
+import { ADAPTER_EVENTS, IProvider } from "@web3auth/base";
 import { UserTypeContext } from "../components/plasmic/xrpense/PlasmicGlobalVariant__UserType";
 
+type AccountContextValue = {
+  connected: boolean;
+  address: string | null;
+  provider: IProvider | null;
+};
+export const AccountContext = createContext<AccountContextValue>({
+  connected: false,
+  address: null,
+  provider: null,
+});
+
 export function AddrFetcher({ children }: { children: ReactNode }) {
-  const [_, setAddr] = useState<string | null>(null);
+  const [addr, setAddr] = useState<string | null>(null);
   useEffect(() => {
     window.currentAddr = null;
     setAddr(null);
@@ -35,8 +52,23 @@ export function AddrFetcher({ children }: { children: ReactNode }) {
     };
   }, []);
   return (
-    <UserTypeContext.Provider value={web3auth.connected ? "user" : "anonymous"}>
-      {children}
-    </UserTypeContext.Provider>
+    <AccountContext.Provider
+      value={{
+        connected: web3auth.connected,
+        address: addr,
+        provider: web3auth.provider,
+      }}
+    >
+      <UserTypeContext.Provider
+        value={web3auth.connected ? "user" : "anonymous"}
+      >
+        {children}
+      </UserTypeContext.Provider>
+    </AccountContext.Provider>
   );
+}
+
+export function useAccount() {
+  const addr = useContext(AccountContext);
+  return addr;
 }

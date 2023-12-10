@@ -375,98 +375,98 @@ function PlasmicCopilot__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </div>
-                <DefaultButton
-                  className={classNames(
-                    "__wab_instance",
-                    sty.defaultButton__sPtha
-                  )}
-                  color={"primaryLt"}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["runOnGenerate"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            eventRef: $props["onGenerate"],
-                            args: [
-                              (() => {
-                                try {
-                                  return $state.suggestion;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return (({ eventRef, args }) => {
-                            return eventRef?.(...(args ?? []));
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["runOnGenerate"] != null &&
-                      typeof $steps["runOnGenerate"] === "object" &&
-                      typeof $steps["runOnGenerate"].then === "function"
-                    ) {
-                      $steps["runOnGenerate"] = await $steps["runOnGenerate"];
-                    }
-
-                    $steps["updateDrawerOpen"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["drawer", "open"]
-                            },
-                            operation: 0,
-                            value: false
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            p.set(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateDrawerOpen"] != null &&
-                      typeof $steps["updateDrawerOpen"] === "object" &&
-                      typeof $steps["updateDrawerOpen"].then === "function"
-                    ) {
-                      $steps["updateDrawerOpen"] = await $steps[
-                        "updateDrawerOpen"
-                      ];
-                    }
-                  }}
-                  size={"compact"}
-                >
-                  <div
+                  <DefaultButton
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__h8VB1
+                      "__wab_instance",
+                      sty.defaultButton__sPtha
                     )}
+                    color={"link"}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["runOnGenerate"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              eventRef: $props["onGenerate"],
+                              args: [
+                                (() => {
+                                  try {
+                                    return $state.suggestion;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return (({ eventRef, args }) => {
+                              return eventRef?.(...(args ?? []));
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runOnGenerate"] != null &&
+                        typeof $steps["runOnGenerate"] === "object" &&
+                        typeof $steps["runOnGenerate"].then === "function"
+                      ) {
+                        $steps["runOnGenerate"] = await $steps["runOnGenerate"];
+                      }
+
+                      $steps["updateDrawerOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["drawer", "open"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              p.set(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDrawerOpen"] != null &&
+                        typeof $steps["updateDrawerOpen"] === "object" &&
+                        typeof $steps["updateDrawerOpen"].then === "function"
+                      ) {
+                        $steps["updateDrawerOpen"] = await $steps[
+                          "updateDrawerOpen"
+                        ];
+                      }
+                    }}
+                    size={"compact"}
                   >
-                    {"\u78ba\u5b9a"}
-                  </div>
-                </DefaultButton>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__h8VB1
+                      )}
+                    >
+                      {"\u78ba\u5b9a"}
+                    </div>
+                  </DefaultButton>
+                </div>
               </div>
             ) : null}
           </p.Stack>
@@ -499,7 +499,7 @@ function PlasmicCopilot__RenderFunc(props: {
                   sty.text__vh3DM
                 )}
               >
-                {"\u3092\u8003\u3048\u3066\u3082\u3089\u3046"}
+                {"\u3092\u8003\u3048\u3066\u307f\u308b"}
               </div>
             </div>
           </DefaultButton>

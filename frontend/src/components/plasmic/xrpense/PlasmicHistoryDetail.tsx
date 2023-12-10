@@ -44,12 +44,16 @@ import {
 } from "@plasmicapp/react-web";
 import Layout from "../../Layout"; // plasmic-import: 8kcWfTTW5pIG/component
 import Alert from "../../Alert"; // plasmic-import: 53hvCvCAAUUJ/component
+import Drawer from "../../Drawer"; // plasmic-import: t62FIGHnQAL5/component
 import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
 import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
 import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
+import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
+import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
+import Select from "../../Select"; // plasmic-import: Y7ZmvQv6glP1/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import { Quill } from "@plasmicpkgs/react-quill";
 import { quillHelpers as Quill_Helpers } from "@plasmicpkgs/react-quill";
@@ -75,15 +79,26 @@ export type PlasmicHistoryDetail__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHistoryDetail__VariantsArgs;
 export const PlasmicHistoryDetail__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicHistoryDetail__ArgsType = {};
+export type PlasmicHistoryDetail__ArgsType = {
+  onRedeemFlowStart?: (event: any) => void;
+  txResult?: any;
+};
 type ArgPropType = keyof PlasmicHistoryDetail__ArgsType;
-export const PlasmicHistoryDetail__ArgProps = new Array<ArgPropType>();
+export const PlasmicHistoryDetail__ArgProps = new Array<ArgPropType>(
+  "onRedeemFlowStart",
+  "txResult"
+);
 
 export type PlasmicHistoryDetail__OverridesType = {
   root?: p.Flex<"div">;
   layout?: p.Flex<typeof Layout>;
   alert?: p.Flex<typeof Alert>;
+  redeemDrawer?: p.Flex<typeof Drawer>;
+  redemptionForm?: p.Flex<typeof FormWrapper>;
+  input?: p.Flex<typeof AntdInput>;
+  textArea?: p.Flex<typeof AntdTextArea>;
   form?: p.Flex<typeof FormWrapper>;
+  status?: p.Flex<typeof Select>;
   titleInput?: p.Flex<typeof AntdInput>;
   dateInput?: p.Flex<typeof AntdInput>;
   nameInput?: p.Flex<typeof AntdInput>;
@@ -114,7 +129,16 @@ function PlasmicHistoryDetail__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {
+          txResult: {}
+        },
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -210,6 +234,52 @@ function PlasmicHistoryDetail__RenderFunc(props: {
 
         refName: "form",
         onMutate: p.generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
+      },
+      {
+        path: "redeemDrawer.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "status.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "redemptionForm.value",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "redemptionForm",
+        onMutate: p.generateOnMutateForSpec("value", FormWrapper_Helpers)
+      },
+      {
+        path: "redemptionForm.isSubmitting",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "redemptionForm",
+        onMutate: p.generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
+      },
+      {
+        path: "input.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: p.generateOnMutateForSpec("value", AntdInput_Helpers)
+      },
+      {
+        path: "textArea.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: p.generateOnMutateForSpec("value", AntdTextArea_Helpers)
       }
     ],
     [$props, $ctx, $refs]
@@ -300,16 +370,317 @@ function PlasmicHistoryDetail__RenderFunc(props: {
                             "\u7d4c\u8cbb\u304c\u627f\u8a8d\u3055\u308c\u3001Check\u304c\u4f5c\u6210\u3055\u308c\u3001\u652f\u6255\u3044\u3092\u53d7\u3051\u53d6\u308c\u308b\u72b6\u614b\u306b\u306a\u308a\u307e\u3057\u305f\u3002\u4eca\u3059\u3050\u8cc7\u91d1\u3092\u56de\u53ce\u3057\u307e\u3057\u3087\u3046\uff01"
                           }
                         </div>
-                        <DefaultButton
+                        <Drawer
+                          data-plasmic-name={"redeemDrawer"}
+                          data-plasmic-override={overrides.redeemDrawer}
                           className={classNames(
                             "__wab_instance",
-                            sty.defaultButton__ox1J5
+                            sty.redeemDrawer
                           )}
-                          color={"primary"}
-                          size={"compact"}
+                          onOpenChange={p.generateStateOnChangeProp($state, [
+                            "redeemDrawer",
+                            "open"
+                          ])}
+                          open={p.generateStateValueProp($state, [
+                            "redeemDrawer",
+                            "open"
+                          ])}
+                          slot={
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return !!$props.txResult;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return true;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.freeBox__ulz5W
+                                  )}
+                                >
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__l6NC
+                                    )}
+                                  >
+                                    {
+                                      "\u30c8\u30e9\u30f3\u30b6\u30af\u30b7\u30e7\u30f3\u304c\u4f5c\u6210\u3055\u308c\u307e\u3057\u305f\uff01"
+                                    }
+                                  </div>
+                                  {(() => {
+                                    const child$Props = {
+                                      className: classNames(
+                                        "__wab_instance",
+                                        sty.redemptionForm
+                                      ),
+                                      extendedOnValuesChange:
+                                        p.generateStateOnChangePropForCodeComponents(
+                                          $state,
+                                          "value",
+                                          ["redemptionForm", "value"],
+                                          FormWrapper_Helpers
+                                        ),
+                                      formItems: [
+                                        {
+                                          label: "Name",
+                                          name: "name",
+                                          inputType: "Text"
+                                        },
+                                        {
+                                          label: "Message",
+                                          name: "message",
+                                          inputType: "Text Area"
+                                        }
+                                      ],
+                                      initialValues: (() => {
+                                        try {
+                                          return $props.txResult;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })(),
+                                      labelCol: {
+                                        span: 8,
+                                        horizontalOnly: true
+                                      },
+                                      layout: "vertical",
+                                      mode: "advanced",
+                                      onIsSubmittingChange:
+                                        p.generateStateOnChangePropForCodeComponents(
+                                          $state,
+                                          "isSubmitting",
+                                          ["redemptionForm", "isSubmitting"],
+                                          FormWrapper_Helpers
+                                        ),
+                                      ref: ref => {
+                                        $refs["redemptionForm"] = ref;
+                                      },
+                                      submitSlot: null,
+                                      wrapperCol: {
+                                        span: 16,
+                                        horizontalOnly: true
+                                      }
+                                    };
+                                    p.initializeCodeComponentStates(
+                                      $state,
+                                      [
+                                        {
+                                          name: "value",
+                                          plasmicStateName:
+                                            "redemptionForm.value"
+                                        },
+                                        {
+                                          name: "isSubmitting",
+                                          plasmicStateName:
+                                            "redemptionForm.isSubmitting"
+                                        }
+                                      ],
+                                      [],
+                                      FormWrapper_Helpers ?? {},
+                                      child$Props
+                                    );
+
+                                    return (
+                                      <FormWrapper
+                                        data-plasmic-name={"redemptionForm"}
+                                        data-plasmic-override={
+                                          overrides.redemptionForm
+                                        }
+                                        {...child$Props}
+                                      >
+                                        <FormItemWrapper
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.formField___2D2Ny
+                                          )}
+                                          label={
+                                            "\u30c8\u30e9\u30f3\u30b6\u30af\u30b7\u30e7\u30f3\u30cf\u30c3\u30b7\u30e5"
+                                          }
+                                          name={"hash"}
+                                        >
+                                          {(() => {
+                                            const child$Props = {
+                                              className: classNames(
+                                                "__wab_instance",
+                                                sty.input
+                                              ),
+                                              onChange:
+                                                p.generateStateOnChangePropForCodeComponents(
+                                                  $state,
+                                                  "value",
+                                                  ["input", "value"],
+                                                  AntdInput_Helpers
+                                                ),
+                                              value: p.generateStateValueProp(
+                                                $state,
+                                                ["input", "value"]
+                                              )
+                                            };
+                                            p.initializeCodeComponentStates(
+                                              $state,
+                                              [
+                                                {
+                                                  name: "value",
+                                                  plasmicStateName:
+                                                    "input.value"
+                                                }
+                                              ],
+                                              [],
+                                              AntdInput_Helpers ?? {},
+                                              child$Props
+                                            );
+
+                                            return (
+                                              <AntdInput
+                                                data-plasmic-name={"input"}
+                                                data-plasmic-override={
+                                                  overrides.input
+                                                }
+                                                {...child$Props}
+                                              />
+                                            );
+                                          })()}
+                                        </FormItemWrapper>
+                                        <FormItemWrapper
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.formField__fr2Eu
+                                          )}
+                                          label={
+                                            "\u30c8\u30e9\u30f3\u30b6\u30af\u30b7\u30e7\u30f3\u30d6\u30ed\u30d6"
+                                          }
+                                          name={"tx_blob"}
+                                        >
+                                          {(() => {
+                                            const child$Props = {
+                                              className: classNames(
+                                                "__wab_instance",
+                                                sty.textArea
+                                              ),
+                                              onChange:
+                                                p.generateStateOnChangePropForCodeComponents(
+                                                  $state,
+                                                  "value",
+                                                  ["textArea", "value"],
+                                                  AntdTextArea_Helpers
+                                                ),
+                                              value: p.generateStateValueProp(
+                                                $state,
+                                                ["textArea", "value"]
+                                              )
+                                            };
+                                            p.initializeCodeComponentStates(
+                                              $state,
+                                              [
+                                                {
+                                                  name: "value",
+                                                  plasmicStateName:
+                                                    "textArea.value"
+                                                }
+                                              ],
+                                              [],
+                                              AntdTextArea_Helpers ?? {},
+                                              child$Props
+                                            );
+
+                                            return (
+                                              <AntdTextArea
+                                                data-plasmic-name={"textArea"}
+                                                data-plasmic-override={
+                                                  overrides.textArea
+                                                }
+                                                {...child$Props}
+                                              />
+                                            );
+                                          })()}
+                                        </FormItemWrapper>
+                                      </FormWrapper>
+                                    );
+                                  })()}
+                                </div>
+                              ) : null}
+                              {(() => {
+                                try {
+                                  return !$props.txResult;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return true;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <p.Stack
+                                  as={"div"}
+                                  hasGap={true}
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.freeBox__czPyT
+                                  )}
+                                >
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__wjS9R
+                                    )}
+                                  >
+                                    {
+                                      "\u7cbe\u7b97\u3092\u958b\u59cb\u3057\u307e\u3059\u3002"
+                                    }
+                                  </div>
+                                  <DefaultButton
+                                    className={classNames(
+                                      "__wab_instance",
+                                      sty.defaultButton__gfUm
+                                    )}
+                                    color={"primary"}
+                                    onClick={args.onRedeemFlowStart}
+                                  >
+                                    {"\u7cbe\u7b97\u3059\u308b"}
+                                  </DefaultButton>
+                                </p.Stack>
+                              ) : null}
+                            </React.Fragment>
+                          }
+                          trigger={
+                            <DefaultButton
+                              className={classNames(
+                                "__wab_instance",
+                                sty.defaultButton__ox1J5
+                              )}
+                              color={"primary"}
+                              size={"compact"}
+                            >
+                              {"\u7cbe\u7b97\u3092\u958b\u59cb\u3059\u308b"}
+                            </DefaultButton>
+                          }
                         >
-                          {"\u7cbe\u7b97\u3092\u958b\u59cb\u3059\u308b"}
-                        </DefaultButton>
+                          {
+                            "\u7cbe\u7b97\u30c8\u30e9\u30f3\u30b6\u30af\u30b7\u30e7\u30f3\u3092\u4f5c\u308b"
+                          }
+                        </Drawer>
                       </div>
                     }
                     className={classNames("__wab_instance", sty.alert)}
@@ -361,7 +732,10 @@ function PlasmicHistoryDetail__RenderFunc(props: {
                                 .detail.description,
                             attachments:
                               $queries.query.data.response.data.expense_by_pk
-                                .attachments
+                                .attachments,
+                            status:
+                              $queries.query.data.response.data.expense_by_pk
+                                .status
                           };
                         } catch (e) {
                           if (
@@ -418,6 +792,68 @@ function PlasmicHistoryDetail__RenderFunc(props: {
                             sty.freeBox__lrDBe
                           )}
                         >
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__htHs
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__mo5Mo
+                                )}
+                              >
+                                {"\u30b9\u30c6\u30fc\u30bf\u30b9"}
+                              </div>
+                            }
+                            name={"status"}
+                          >
+                            <Select
+                              data-plasmic-name={"status"}
+                              data-plasmic-override={overrides.status}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.status
+                              )}
+                              isDisabled={true}
+                              onChange={(...eventArgs) => {
+                                p.generateStateOnChangeProp($state, [
+                                  "status",
+                                  "value"
+                                ])(eventArgs[0]);
+                              }}
+                              options={(() => {
+                                const __composite = [
+                                  { value: null, label: null },
+                                  { value: null, label: null },
+                                  { value: null, label: null },
+                                  { value: null, label: null },
+                                  { value: null, label: null }
+                                ];
+                                __composite["0"]["value"] = "draft";
+                                __composite["0"]["label"] =
+                                  "\u4e0b\u66f8\u304d";
+                                __composite["1"]["value"] = "unpaid";
+                                __composite["1"]["label"] =
+                                  "\u7cbe\u7b97\u5f85\u3061";
+                                __composite["2"]["value"] = "paid";
+                                __composite["2"]["label"] =
+                                  "\u7cbe\u7b97\u5b8c\u4e86";
+                                __composite["3"]["value"] = "inReview";
+                                __composite["3"]["label"] =
+                                  "\u30ec\u30d3\u30e5\u30fc\u4e2d";
+                                __composite["4"]["value"] = "rejected";
+                                __composite["4"]["label"] = "\u5374\u4e0b";
+                                return __composite;
+                              })()}
+                              value={p.generateStateValueProp($state, [
+                                "status",
+                                "value"
+                              ])}
+                            />
+                          </FormItemWrapper>
                           <FormItemWrapper
                             className={classNames(
                               "__wab_instance",
@@ -1076,7 +1512,12 @@ const PlasmicDescendants = {
     "root",
     "layout",
     "alert",
+    "redeemDrawer",
+    "redemptionForm",
+    "input",
+    "textArea",
     "form",
+    "status",
     "titleInput",
     "dateInput",
     "nameInput",
@@ -1090,7 +1531,12 @@ const PlasmicDescendants = {
   layout: [
     "layout",
     "alert",
+    "redeemDrawer",
+    "redemptionForm",
+    "input",
+    "textArea",
     "form",
+    "status",
     "titleInput",
     "dateInput",
     "nameInput",
@@ -1101,9 +1547,14 @@ const PlasmicDescendants = {
     "attachments",
     "button"
   ],
-  alert: ["alert"],
+  alert: ["alert", "redeemDrawer", "redemptionForm", "input", "textArea"],
+  redeemDrawer: ["redeemDrawer", "redemptionForm", "input", "textArea"],
+  redemptionForm: ["redemptionForm", "input", "textArea"],
+  input: ["input"],
+  textArea: ["textArea"],
   form: [
     "form",
+    "status",
     "titleInput",
     "dateInput",
     "nameInput",
@@ -1114,6 +1565,7 @@ const PlasmicDescendants = {
     "attachments",
     "button"
   ],
+  status: ["status"],
   titleInput: ["titleInput"],
   dateInput: ["dateInput"],
   nameInput: ["nameInput"],
@@ -1131,7 +1583,12 @@ type NodeDefaultElementType = {
   root: "div";
   layout: typeof Layout;
   alert: typeof Alert;
+  redeemDrawer: typeof Drawer;
+  redemptionForm: typeof FormWrapper;
+  input: typeof AntdInput;
+  textArea: typeof AntdTextArea;
   form: typeof FormWrapper;
+  status: typeof Select;
   titleInput: typeof AntdInput;
   dateInput: typeof AntdInput;
   nameInput: typeof AntdInput;
@@ -1205,7 +1662,12 @@ export const PlasmicHistoryDetail = Object.assign(
     // Helper components rendering sub-elements
     layout: makeNodeComponent("layout"),
     alert: makeNodeComponent("alert"),
+    redeemDrawer: makeNodeComponent("redeemDrawer"),
+    redemptionForm: makeNodeComponent("redemptionForm"),
+    input: makeNodeComponent("input"),
+    textArea: makeNodeComponent("textArea"),
     form: makeNodeComponent("form"),
+    status: makeNodeComponent("status"),
     titleInput: makeNodeComponent("titleInput"),
     dateInput: makeNodeComponent("dateInput"),
     nameInput: makeNodeComponent("nameInput"),

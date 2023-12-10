@@ -44,10 +44,11 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic_xrpense.module.css"; // plasmic-import: 4QmempJ4uAWNpTRouKWPHf/projectcss
 import sty from "./PlasmicReqItem.module.css"; // plasmic-import: h2Cqfb2WKnuT/css
 
-import CompleteIcon from "./icons/PlasmicIcon__Complete"; // plasmic-import: pTJFuCWk8NGr/icon
+import PencilSvgrepoComsvgIcon from "./icons/PlasmicIcon__PencilSvgrepoComsvg"; // plasmic-import: ZLkLNe8FZ2MH/icon
 import ThreedotsSvgrepoComsvgIcon from "./icons/PlasmicIcon__ThreedotsSvgrepoComsvg"; // plasmic-import: wN9HcmYrq_HW/icon
 import Error16SvgrepoComsvgIcon from "./icons/PlasmicIcon__Error16SvgrepoComsvg"; // plasmic-import: dD3ugMsUg3e6/icon
 import HandShakeSvgrepoComsvgIcon from "./icons/PlasmicIcon__HandShakeSvgrepoComsvg"; // plasmic-import: uL_WO8lUTM0O/icon
+import ChecksvgIcon from "../radix_ui/icons/PlasmicIcon__Checksvg"; // plasmic-import: Wyt3GMMsLefj/icon
 
 createPlasmicElementProxy;
 
@@ -66,7 +67,6 @@ export const PlasmicReqItem__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicReqItem__ArgsType = {
-  unixtime?: number;
   title?: React.ReactNode;
   bill?: React.ReactNode;
   reqId?: string;
@@ -75,7 +75,6 @@ export type PlasmicReqItem__ArgsType = {
 };
 type ArgPropType = keyof PlasmicReqItem__ArgsType;
 export const PlasmicReqItem__ArgProps = new Array<ArgPropType>(
-  "unixtime",
   "title",
   "bill",
   "reqId",
@@ -89,7 +88,6 @@ export type PlasmicReqItem__OverridesType = {
 };
 
 export interface DefaultReqItemProps {
-  unixtime?: number;
   title?: React.ReactNode;
   bill?: React.ReactNode;
   reqId?: string;
@@ -117,16 +115,7 @@ function PlasmicReqItem__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(
-    () =>
-      Object.assign(
-        {
-          unixtime: 10000000
-        },
-        props.args
-      ),
-    [props.args]
-  );
+  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
 
   const $props = {
     ...args,
@@ -191,7 +180,7 @@ function PlasmicReqItem__RenderFunc(props: {
         }
       )}
       component={Link}
-      href={`/inbox/${(() => {
+      href={`/history/${(() => {
         try {
           return $props.reqId;
         } catch (e) {
@@ -216,10 +205,13 @@ function PlasmicReqItem__RenderFunc(props: {
             ? Error16SvgrepoComsvgIcon
             : hasVariant($state, "type", "inReview")
             ? ThreedotsSvgrepoComsvgIcon
-            : CompleteIcon
+            : hasVariant($state, "type", "paid")
+            ? ChecksvgIcon
+            : PencilSvgrepoComsvgIcon
         }
         className={classNames(projectcss.all, sty.svg, {
           [sty.svgtype_inReview]: hasVariant($state, "type", "inReview"),
+          [sty.svgtype_paid]: hasVariant($state, "type", "paid"),
           [sty.svgtype_rejected]: hasVariant($state, "type", "rejected"),
           [sty.svgtype_unpaid]: hasVariant($state, "type", "unpaid"),
           [sty.svgunread]: hasVariant($state, "unread", "unread")

@@ -43,7 +43,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
-import Dialog from "../../Dialog"; // plasmic-import: DuaGFlJLalJe/component
+import Drawer from "../../Drawer"; // plasmic-import: us1o9GMarTi_/component
 import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 import Select from "../../Select"; // plasmic-import: Y7ZmvQv6glP1/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
@@ -79,7 +79,7 @@ export const PlasmicCopilot__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicCopilot__OverridesType = {
   root?: p.Flex<"div">;
-  dialog?: p.Flex<typeof Dialog>;
+  drawer?: p.Flex<typeof Drawer>;
   select?: p.Flex<typeof Select>;
   textarea?: p.Flex<"textarea">;
 };
@@ -125,16 +125,10 @@ function PlasmicCopilot__RenderFunc(props: {
   const stateSpecs: Parameters<typeof p.useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "dialog.open",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
-      },
-      {
         path: "select.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "balanced"
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
         path: "textarea.value",
@@ -147,6 +141,12 @@ function PlasmicCopilot__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ``
+      },
+      {
+        path: "drawer.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -177,10 +177,13 @@ function PlasmicCopilot__RenderFunc(props: {
         sty.root
       )}
     >
-      <Dialog
-        data-plasmic-name={"dialog"}
-        data-plasmic-override={overrides.dialog}
-        body={
+      <Drawer
+        data-plasmic-name={"drawer"}
+        data-plasmic-override={overrides.drawer}
+        className={classNames("__wab_instance", sty.drawer)}
+        onOpenChange={p.generateStateOnChangeProp($state, ["drawer", "open"])}
+        open={p.generateStateValueProp($state, ["drawer", "open"])}
+        slot={
           <p.Stack
             as={"div"}
             hasGap={true}
@@ -416,12 +419,12 @@ function PlasmicCopilot__RenderFunc(props: {
                       $steps["runOnGenerate"] = await $steps["runOnGenerate"];
                     }
 
-                    $steps["updateDialogOpen"] = true
+                    $steps["updateDrawerOpen"] = true
                       ? (() => {
                           const actionArgs = {
                             variable: {
                               objRoot: $state,
-                              variablePath: ["dialog", "open"]
+                              variablePath: ["drawer", "open"]
                             },
                             operation: 0,
                             value: false
@@ -443,12 +446,12 @@ function PlasmicCopilot__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["updateDialogOpen"] != null &&
-                      typeof $steps["updateDialogOpen"] === "object" &&
-                      typeof $steps["updateDialogOpen"].then === "function"
+                      $steps["updateDrawerOpen"] != null &&
+                      typeof $steps["updateDrawerOpen"] === "object" &&
+                      typeof $steps["updateDrawerOpen"].then === "function"
                     ) {
-                      $steps["updateDialogOpen"] = await $steps[
-                        "updateDialogOpen"
+                      $steps["updateDrawerOpen"] = await $steps[
+                        "updateDrawerOpen"
                       ];
                     }
                   }}
@@ -468,10 +471,6 @@ function PlasmicCopilot__RenderFunc(props: {
             ) : null}
           </p.Stack>
         }
-        className={classNames("__wab_instance", sty.dialog)}
-        onOpenChange={p.generateStateOnChangeProp($state, ["dialog", "open"])}
-        open={p.generateStateValueProp($state, ["dialog", "open"])}
-        title={"AI\u3092\u4f7f\u3046"}
         trigger={
           <DefaultButton
             className={classNames("__wab_instance", sty.defaultButton__wK1Py)}
@@ -505,14 +504,16 @@ function PlasmicCopilot__RenderFunc(props: {
             </div>
           </DefaultButton>
         }
-      />
+      >
+        {"AI\u3092\u4f7f\u3046"}
+      </Drawer>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "dialog", "select", "textarea"],
-  dialog: ["dialog", "select", "textarea"],
+  root: ["root", "drawer", "select", "textarea"],
+  drawer: ["drawer", "select", "textarea"],
   select: ["select"],
   textarea: ["textarea"]
 } as const;
@@ -521,7 +522,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  dialog: typeof Dialog;
+  drawer: typeof Drawer;
   select: typeof Select;
   textarea: "textarea";
 };
@@ -586,7 +587,7 @@ export const PlasmicCopilot = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    dialog: makeNodeComponent("dialog"),
+    drawer: makeNodeComponent("drawer"),
     select: makeNodeComponent("select"),
     textarea: makeNodeComponent("textarea"),
 

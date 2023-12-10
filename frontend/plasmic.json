@@ -972,19 +972,6 @@
           "componentType": "component"
         },
         {
-          "id": "DuaGFlJLalJe",
-          "name": "Dialog",
-          "type": "managed",
-          "projectId": "4QmempJ4uAWNpTRouKWPHf",
-          "renderModuleFilePath": "plasmic/xrpense/PlasmicDialog.tsx",
-          "importSpec": {
-            "modulePath": "Dialog.tsx"
-          },
-          "cssFilePath": "plasmic/xrpense/PlasmicDialog.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "53hvCvCAAUUJ",
           "name": "Alert",
           "type": "managed",
@@ -1010,6 +997,46 @@
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "button"
+        },
+        {
+          "id": "t62FIGHnQAL5",
+          "name": "Drawer",
+          "type": "managed",
+          "projectId": "4QmempJ4uAWNpTRouKWPHf",
+          "renderModuleFilePath": "plasmic/xrpense/PlasmicDrawer.tsx",
+          "importSpec": {
+            "modulePath": "Drawer.tsx"
+          },
+          "cssFilePath": "plasmic/xrpense/PlasmicDrawer.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "us1o9GMarTi_",
+          "name": "Drawer",
+          "type": "managed",
+          "projectId": "4QmempJ4uAWNpTRouKWPHf",
+          "renderModuleFilePath": "plasmic/xrpense/PlasmicDrawer.tsx",
+          "importSpec": {
+            "modulePath": "Drawer.tsx"
+          },
+          "cssFilePath": "plasmic/xrpense/PlasmicDrawer.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "nEy9BLWNBwZh",
+          "name": "TextInput",
+          "type": "managed",
+          "projectId": "4QmempJ4uAWNpTRouKWPHf",
+          "renderModuleFilePath": "plasmic/xrpense/PlasmicTextInput.tsx",
+          "importSpec": {
+            "modulePath": "TextInput.tsx"
+          },
+          "cssFilePath": "plasmic/xrpense/PlasmicTextInput.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "text-input"
         }
       ],
       "icons": [
@@ -1147,6 +1174,11 @@
           "id": "g9tRk06ouNlG",
           "name": "Icon3Icon",
           "moduleFilePath": "plasmic/xrpense/icons/PlasmicIcon__Icon3.tsx"
+        },
+        {
+          "id": "zU9gzLXu5GoG",
+          "name": "SearchsvgIcon",
+          "moduleFilePath": "plasmic/xrpense/icons/PlasmicIcon__Searchsvg.tsx"
         }
       ],
       "images": [

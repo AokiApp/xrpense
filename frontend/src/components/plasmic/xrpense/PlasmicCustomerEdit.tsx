@@ -436,6 +436,47 @@ function PlasmicCustomerEdit__RenderFunc(props: {
                             sty.defaultButton___2WDo9
                           )}
                           color={"primaryLt"}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["runActionOnForm"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    tplRef: "form",
+                                    action: "setFieldValue",
+                                    args: [
+                                      ["redeemAddress"],
+                                      (() => {
+                                        try {
+                                          if (window.currentAddr) {
+                                            return window.currentAddr;
+                                          } else {
+                                            return "";
+                                          }
+                                        } catch (error) {
+                                          return "";
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return (({ tplRef, action, args }) => {
+                                    return $refs?.[tplRef]?.[action]?.(
+                                      ...(args ?? [])
+                                    );
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runActionOnForm"] != null &&
+                              typeof $steps["runActionOnForm"] === "object" &&
+                              typeof $steps["runActionOnForm"].then ===
+                                "function"
+                            ) {
+                              $steps["runActionOnForm"] = await $steps[
+                                "runActionOnForm"
+                              ];
+                            }
+                          }}
                         >
                           <div
                             className={classNames(

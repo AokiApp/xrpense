@@ -16,6 +16,7 @@
     "@plasmicpkgs/antd5": "^0.0.199",
     "@plasmicpkgs/plasmic-basic-components": "^0.0.204",
     "@plasmicpkgs/plasmic-rich-components": "^1.0.171",
+    "@plasmicpkgs/radix-ui": "^0.0.38",
     "@plasmicpkgs/react-quill": "^1.0.42",
     "@plasmicpkgs/react-slick": "^0.0.205",
     "@web3auth/base": "^7.2.0",

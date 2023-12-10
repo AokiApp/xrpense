@@ -43,7 +43,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -133,8 +133,8 @@ function PlasmicAdmin__RenderFunc(props: {
             sty.root
           )}
         >
-          <Button
-            className={classNames("__wab_instance", sty.button__wke4J)}
+          <DefaultButton
+            className={classNames("__wab_instance", sty.defaultButton__wke4J)}
             onClick={async event => {
               const $steps = {};
 
@@ -184,9 +184,9 @@ function PlasmicAdmin__RenderFunc(props: {
             }}
           >
             {"Initiate Org"}
-          </Button>
-          <Button
-            className={classNames("__wab_instance", sty.button___5O8)}
+          </DefaultButton>
+          <DefaultButton
+            className={classNames("__wab_instance", sty.defaultButton___5O8)}
             onClick={async event => {
               const $steps = {};
 
@@ -236,7 +236,7 @@ function PlasmicAdmin__RenderFunc(props: {
             }}
           >
             {"Insert Inbox"}
-          </Button>
+          </DefaultButton>
         </div>
       </div>
     </React.Fragment>

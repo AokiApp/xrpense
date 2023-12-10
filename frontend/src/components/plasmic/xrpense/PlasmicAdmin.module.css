@@ -21,7 +21,7 @@
 .root > * {
   grid-column: 4;
 }
-.button__wke4J:global(.__wab_instance) {
+.defaultButton__wke4J:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
 }
@@ -37,7 +37,7 @@
   width: auto;
   height: 1em;
 }
-.button___5O8:global(.__wab_instance) {
+.defaultButton___5O8:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
 }

@@ -53,7 +53,7 @@ import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/reg
 import { AntdDatePicker } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import { datePickerHelpers as AntdDatePicker_Helpers } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import { AntdInputNumber } from "@plasmicpkgs/antd5/skinny/registerInput";
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 import ReqItem from "../../ReqItem"; // plasmic-import: h2Cqfb2WKnuT/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -88,7 +88,7 @@ export type PlasmicHistory__OverridesType = {
   svg?: p.Flex<"svg">;
   form?: p.Flex<typeof FormWrapper>;
   input?: p.Flex<typeof AntdInput>;
-  button?: p.Flex<typeof Button>;
+  defaultButton?: p.Flex<typeof DefaultButton>;
   reqItem?: p.Flex<typeof ReqItem>;
 };
 
@@ -380,7 +380,7 @@ function PlasmicHistory__RenderFunc(props: {
                                 <FormItemWrapper
                                   className={classNames(
                                     "__wab_instance",
-                                    sty.formField__xun0K
+                                    sty.formField__doYep
                                   )}
                                   hidden={false}
                                   label={"\u30bf\u30a4\u30c8\u30eb"}
@@ -397,7 +397,7 @@ function PlasmicHistory__RenderFunc(props: {
                                 <FormItemWrapper
                                   className={classNames(
                                     "__wab_instance",
-                                    sty.formField__mrBx7
+                                    sty.formField__zpMmp
                                   )}
                                   label={"\u65e5\u4ed8(\u4ee5\u964d)"}
                                   name={"since"}
@@ -405,11 +405,11 @@ function PlasmicHistory__RenderFunc(props: {
                                   <AntdDatePicker
                                     className={classNames(
                                       "__wab_instance",
-                                      sty.dateTimePicker___4YltY
+                                      sty.dateTimePicker__bisP1
                                     )}
                                     popupScopeClassName={
                                       sty[
-                                        "dateTimePicker___4YltY__datePickerPopup"
+                                        "dateTimePicker__bisP1__datePickerPopup"
                                       ]
                                     }
                                   />
@@ -417,7 +417,7 @@ function PlasmicHistory__RenderFunc(props: {
                                 <FormItemWrapper
                                   className={classNames(
                                     "__wab_instance",
-                                    sty.formField__ye8NP
+                                    sty.formField__uZl5D
                                   )}
                                   label={"\u65e5\u4ed8(\u4ee5\u524d)"}
                                   name={"until"}
@@ -425,11 +425,11 @@ function PlasmicHistory__RenderFunc(props: {
                                   <AntdDatePicker
                                     className={classNames(
                                       "__wab_instance",
-                                      sty.dateTimePicker__jtIl5
+                                      sty.dateTimePicker__cUg9
                                     )}
                                     popupScopeClassName={
                                       sty[
-                                        "dateTimePicker__jtIl5__datePickerPopup"
+                                        "dateTimePicker__cUg9__datePickerPopup"
                                       ]
                                     }
                                   />
@@ -437,7 +437,7 @@ function PlasmicHistory__RenderFunc(props: {
                                 <FormItemWrapper
                                   className={classNames(
                                     "__wab_instance",
-                                    sty.formField__o9ZOr
+                                    sty.formField__eu0Y0
                                   )}
                                   label={"\u91d1\u984d(\u4ee5\u4e0a)"}
                                   name={"greater"}
@@ -445,7 +445,7 @@ function PlasmicHistory__RenderFunc(props: {
                                   <AntdInputNumber
                                     className={classNames(
                                       "__wab_instance",
-                                      sty.numberInput___9CTed
+                                      sty.numberInput__erjeG
                                     )}
                                     type={"number"}
                                   />
@@ -453,7 +453,7 @@ function PlasmicHistory__RenderFunc(props: {
                                 <FormItemWrapper
                                   className={classNames(
                                     "__wab_instance",
-                                    sty.formField__zhBjg
+                                    sty.formField__qY4Y6
                                   )}
                                   label={"\u91d1\u984d(\u4ee5\u4e0b)"}
                                   name={"less"}
@@ -461,15 +461,15 @@ function PlasmicHistory__RenderFunc(props: {
                                   <AntdInputNumber
                                     className={classNames(
                                       "__wab_instance",
-                                      sty.numberInput__aJ8D1
+                                      sty.numberInput__upCuV
                                     )}
                                     type={"number"}
                                   />
                                 </FormItemWrapper>
-                                <Button
+                                <DefaultButton
                                   className={classNames(
                                     "__wab_instance",
-                                    sty.button
+                                    sty.defaultButton
                                   )}
                                   color={"primary"}
                                   size={"compact"}
@@ -479,12 +479,12 @@ function PlasmicHistory__RenderFunc(props: {
                                     className={classNames(
                                       projectcss.all,
                                       projectcss.__wab_text,
-                                      sty.text___6O7Kn
+                                      sty.text__yQPif
                                     )}
                                   >
                                     {"\u691c\u7d22"}
                                   </div>
-                                </Button>
+                                </DefaultButton>
                               </FormWrapper>
                             );
                           })()}
@@ -634,15 +634,23 @@ const PlasmicDescendants = {
     "svg",
     "form",
     "input",
-    "button",
+    "defaultButton",
     "reqItem"
   ],
-  layout: ["layout", "collapse", "svg", "form", "input", "button", "reqItem"],
-  collapse: ["collapse", "svg", "form", "input", "button"],
+  layout: [
+    "layout",
+    "collapse",
+    "svg",
+    "form",
+    "input",
+    "defaultButton",
+    "reqItem"
+  ],
+  collapse: ["collapse", "svg", "form", "input", "defaultButton"],
   svg: ["svg"],
-  form: ["form", "input", "button"],
+  form: ["form", "input", "defaultButton"],
   input: ["input"],
-  button: ["button"],
+  defaultButton: ["defaultButton"],
   reqItem: ["reqItem"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -655,7 +663,7 @@ type NodeDefaultElementType = {
   svg: "svg";
   form: typeof FormWrapper;
   input: typeof AntdInput;
-  button: typeof Button;
+  defaultButton: typeof DefaultButton;
   reqItem: typeof ReqItem;
 };
 
@@ -724,7 +732,7 @@ export const PlasmicHistory = Object.assign(
     svg: makeNodeComponent("svg"),
     form: makeNodeComponent("form"),
     input: makeNodeComponent("input"),
-    button: makeNodeComponent("button"),
+    defaultButton: makeNodeComponent("defaultButton"),
     reqItem: makeNodeComponent("reqItem"),
 
     // Metadata about props expected for PlasmicHistory

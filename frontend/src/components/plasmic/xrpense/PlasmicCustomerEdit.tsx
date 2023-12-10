@@ -49,7 +49,7 @@ import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Fo
 import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 import { AntdInputNumber } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -430,10 +430,10 @@ function PlasmicCustomerEdit__RenderFunc(props: {
                             );
                           })()}
                         </FormItemWrapper>
-                        <Button
+                        <DefaultButton
                           className={classNames(
                             "__wab_instance",
-                            sty.button___2WDo9
+                            sty.defaultButton___2WDo9
                           )}
                           color={"primaryLt"}
                         >
@@ -448,7 +448,7 @@ function PlasmicCustomerEdit__RenderFunc(props: {
                               "XRPL\u30a2\u30ab\u30a6\u30f3\u30c8\u304b\u3089\u53d6\u5f97"
                             }
                           </div>
-                        </Button>
+                        </DefaultButton>
                       </p.Stack>
                       <FormItemWrapper
                         className={classNames(
@@ -476,10 +476,10 @@ function PlasmicCustomerEdit__RenderFunc(props: {
                           ])}
                         />
                       </FormItemWrapper>
-                      <Button
+                      <DefaultButton
                         className={classNames(
                           "__wab_instance",
-                          sty.button__dkQxE
+                          sty.defaultButton__dkQxE
                         )}
                         color={"negative"}
                         showEndIcon={true}
@@ -494,7 +494,7 @@ function PlasmicCustomerEdit__RenderFunc(props: {
                         >
                           {"\u53cd\u6620\u3055\u305b\u308b"}
                         </div>
-                      </Button>
+                      </DefaultButton>
                     </FormWrapper>
                   );
                 })()

@@ -123,7 +123,7 @@ function PlasmicLayoutBase__RenderFunc(props: {
               try {
                 return (() => {
                   try {
-                    return "アドレス: " + currentAddr;
+                    return "アドレス: " + (currentAddr || "未接続");
                   } catch (e) {
                     return "未接続";
                   }

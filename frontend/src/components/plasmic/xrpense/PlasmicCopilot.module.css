@@ -1,0 +1,160 @@
+.root {
+  display: inline-flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-self: flex-start;
+  padding: 0px;
+}
+.dialog:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
+.defaultButton__wK1Py:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg___5HqF {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.freeBox__cX6CZ {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.text__bd8HT {
+  font-size: 0.9em;
+}
+.slotTargetWhatToGen {
+  font-size: 0.9em;
+}
+.text__vh3DM {
+  font-size: 0.9em;
+}
+.svg__gtDpw {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.freeBox__hlxZu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.freeBox__hlxZu > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  margin-top: calc(0px - 4px);
+  height: calc(100% + 4px);
+}
+.freeBox__hlxZu > :global(.__wab_flex-container) > *,
+.freeBox__hlxZu > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__hlxZu > :global(.__wab_flex-container) > picture > img,
+.freeBox__hlxZu
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 4px;
+}
+.select:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.textarea {
+  position: relative;
+  height: auto;
+  font-size: 0.8em;
+  min-height: 101px;
+  min-width: 316px;
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+.defaultButton__lwdYf:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.svg__xp6Yl {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__kfRcd {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.freeBox__zp02G {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__uefP4 {
+  display: flex;
+  background: var(--token--BMEyZEX6vxW);
+  width: 100%;
+  max-width: 80%;
+  min-width: 0;
+  border-radius: 8px;
+  padding: 8px;
+}
+.text___4Rj7W {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.defaultButton__sPtha:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.svg___7Tbu3 {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__h8VB1 {
+  padding-bottom: 0px;
+}
+.svg__oZazE {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}

@@ -41,7 +41,7 @@ import DecoratedSection from "../../DecoratedSection"; // plasmic-import: TLGCmA
 import IconButton from "../../IconButton"; // plasmic-import: c6xa4h_PpvrO/component
 import Inbox from "../../Inbox"; // plasmic-import: HUySnaEnfX2W/component
 import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 
 import { UserTypeValue, useUserType } from "./PlasmicGlobalVariant__UserType"; // plasmic-import: 4ybx8vV_5sw-/globalVariant
 import { useScreenVariants as useScreenVariantsvAp4RmrZq8S } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: vAp4rmrZq-8s/globalVariant
@@ -327,10 +327,10 @@ function PlasmicHome__RenderFunc(props: {
                         popoverScopeClassName={sty["popover__popover"]}
                         title={null}
                       >
-                        <Button
+                        <DefaultButton
                           className={classNames(
                             "__wab_instance",
-                            sty.button__owXcw
+                            sty.defaultButton__owXcw
                           )}
                           color={"clear"}
                           corner={true}
@@ -364,12 +364,12 @@ function PlasmicHome__RenderFunc(props: {
                               }
                             </div>
                           </p.Stack>
-                        </Button>
+                        </DefaultButton>
                       </AntdPopover>
-                      <Button
+                      <DefaultButton
                         className={classNames(
                           "__wab_instance",
-                          sty.button__r5T7C
+                          sty.defaultButton__r5T7C
                         )}
                         color={"clear"}
                         corner={true}
@@ -403,11 +403,11 @@ function PlasmicHome__RenderFunc(props: {
                             }
                           </div>
                         </p.Stack>
-                      </Button>
-                      <Button
+                      </DefaultButton>
+                      <DefaultButton
                         className={classNames(
                           "__wab_instance",
-                          sty.button__fm61I
+                          sty.defaultButton__fm61I
                         )}
                         color={"clear"}
                         corner={true}
@@ -441,7 +441,7 @@ function PlasmicHome__RenderFunc(props: {
                             }
                           </div>
                         </p.Stack>
-                      </Button>
+                      </DefaultButton>
                     </p.Stack>
                   </DecoratedSection>
                   <p.Stack

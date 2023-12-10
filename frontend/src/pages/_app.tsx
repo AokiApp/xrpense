@@ -4,19 +4,14 @@ import Head from "next/head";
 import "react-quill/dist/quill.snow.css";
 import { PlasmicRootProvider } from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/react-web/lib/host";
-import { UserTypeContext } from "../components/plasmic/xrpense/PlasmicGlobalVariant__UserType";
 import GlobalContextsProvider from "../components/plasmic/xrpense/PlasmicGlobalContextsProvider";
 import "@/styles/globals.css";
-import { web3auth } from "@/blockchain";
 import { AddrFetcher } from "@/blockchain/AddrFetcher";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <PlasmicRootProvider Head={Head}>
-      <AddrFetcher />
-      <UserTypeContext.Provider
-        value={web3auth.connected ? "user" : "anonymous"}
-      >
+      <AddrFetcher>
         <GlobalContextsProvider>
           <ph.PageParamsProvider
             route={useRouter()?.pathname}
@@ -26,7 +21,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </ph.PageParamsProvider>
         </GlobalContextsProvider>
-      </UserTypeContext.Provider>
+      </AddrFetcher>
     </PlasmicRootProvider>
   );
 }

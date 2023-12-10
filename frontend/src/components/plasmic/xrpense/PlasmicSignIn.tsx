@@ -36,7 +36,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -73,7 +73,7 @@ export const PlasmicSignIn__ArgProps = new Array<ArgPropType>("msg", "onLogin");
 
 export type PlasmicSignIn__OverridesType = {
   root?: p.Flex<"div">;
-  button?: p.Flex<typeof Button>;
+  defaultButton?: p.Flex<typeof DefaultButton>;
 };
 
 export interface DefaultSignInProps {}
@@ -199,12 +199,16 @@ function PlasmicSignIn__RenderFunc(props: {
                 {"Xrpense"}
               </div>
             </div>
-            <Button
-              data-plasmic-name={"button"}
-              data-plasmic-override={overrides.button}
-              className={classNames("__wab_instance", sty.button, {
-                [sty.buttonerror]: hasVariant($state, "error", "error"),
-                [sty.buttonloading]: hasVariant($state, "loading", "loading")
+            <DefaultButton
+              data-plasmic-name={"defaultButton"}
+              data-plasmic-override={overrides.defaultButton}
+              className={classNames("__wab_instance", sty.defaultButton, {
+                [sty.defaultButtonerror]: hasVariant($state, "error", "error"),
+                [sty.defaultButtonloading]: hasVariant(
+                  $state,
+                  "loading",
+                  "loading"
+                )
               })}
               color={"primaryLt"}
               isDisabled={
@@ -245,7 +249,7 @@ function PlasmicSignIn__RenderFunc(props: {
                   "\u4f01\u696d\u30a2\u30ab\u30a6\u30f3\u30c8\u3067\u30b7\u30f3\u30b0\u30eb\u30b5\u30a4\u30f3\u30aa\u30f3"
                 }
               </div>
-            </Button>
+            </DefaultButton>
             <div className={classNames(projectcss.all, sty.freeBox__vlJQ)}>
               <p.Stack
                 as={"div"}
@@ -353,15 +357,15 @@ function PlasmicSignIn__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "button"],
-  button: ["button"]
+  root: ["root", "defaultButton"],
+  defaultButton: ["defaultButton"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  button: typeof Button;
+  defaultButton: typeof DefaultButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -424,7 +428,7 @@ export const PlasmicSignIn = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    button: makeNodeComponent("button"),
+    defaultButton: makeNodeComponent("defaultButton"),
 
     // Metadata about props expected for PlasmicSignIn
     internalVariantProps: PlasmicSignIn__VariantProps,

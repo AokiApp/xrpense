@@ -45,7 +45,7 @@ import {
 import Layout from "../../Layout"; // plasmic-import: 8kcWfTTW5pIG/component
 import KvItem from "../../KvItem"; // plasmic-import: Haxw2MIMlmpq/component
 import DecoratedSection from "../../DecoratedSection"; // plasmic-import: TLGCmAakJkGm/component
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -287,26 +287,26 @@ function PlasmicInboxDetail__RenderFunc(props: {
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox__zfwQw)}
                   >
-                    <Button
+                    <DefaultButton
                       className={classNames(
                         "__wab_instance",
-                        sty.button__fq1Ie
+                        sty.defaultButton__fq1Ie
                       )}
                       color={"accent"}
                       link={`/inbox`}
                     >
                       {"\u304a\u77e5\u3089\u305b\u4e00\u89a7\u306b\u623b\u308b"}
-                    </Button>
-                    <Button
+                    </DefaultButton>
+                    <DefaultButton
                       className={classNames(
                         "__wab_instance",
-                        sty.button__w3131
+                        sty.defaultButton__w3131
                       )}
                       color={"primaryLt"}
                       link={`/`}
                     >
                       {"\u30db\u30fc\u30e0\u306b\u623b\u308b"}
-                    </Button>
+                    </DefaultButton>
                   </p.Stack>
                 </div>
               )}

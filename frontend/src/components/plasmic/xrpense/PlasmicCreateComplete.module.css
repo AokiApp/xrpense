@@ -89,7 +89,7 @@
   min-width: 0;
   padding: 8px;
 }
-.button__qKkeE:global(.__wab_instance) {
+.defaultButton__qKkeE:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   width: 100%;
@@ -107,7 +107,7 @@
   width: auto;
   height: 1em;
 }
-.button__de8Ha:global(.__wab_instance) {
+.defaultButton__de8Ha:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   width: 100%;

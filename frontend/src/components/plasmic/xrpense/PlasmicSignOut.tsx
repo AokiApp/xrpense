@@ -36,7 +36,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -63,7 +63,7 @@ export type PlasmicSignOut__OverridesType = {
   root?: p.Flex<"div">;
   freeBox?: p.Flex<"div">;
   text?: p.Flex<"div">;
-  button?: p.Flex<typeof Button>;
+  defaultButton?: p.Flex<typeof DefaultButton>;
 };
 
 export interface DefaultSignOutProps {}
@@ -142,14 +142,14 @@ function PlasmicSignOut__RenderFunc(props: {
             >
               {"\u30b5\u30a4\u30f3\u30a2\u30a6\u30c8\u3057\u307e\u3057\u305f"}
             </div>
-            <Button
-              data-plasmic-name={"button"}
-              data-plasmic-override={overrides.button}
-              className={classNames("__wab_instance", sty.button)}
+            <DefaultButton
+              data-plasmic-name={"defaultButton"}
+              data-plasmic-override={overrides.defaultButton}
+              className={classNames("__wab_instance", sty.defaultButton)}
               link={`/signin`}
             >
               {"\u3082\u3046\u3044\u3061\u3069\u30b5\u30a4\u30f3\u30a4\u30f3"}
-            </Button>
+            </DefaultButton>
           </div>
         </div>
       </div>
@@ -158,10 +158,10 @@ function PlasmicSignOut__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "text", "button"],
-  freeBox: ["freeBox", "text", "button"],
+  root: ["root", "freeBox", "text", "defaultButton"],
+  freeBox: ["freeBox", "text", "defaultButton"],
   text: ["text"],
-  button: ["button"]
+  defaultButton: ["defaultButton"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -170,7 +170,7 @@ type NodeDefaultElementType = {
   root: "div";
   freeBox: "div";
   text: "div";
-  button: typeof Button;
+  defaultButton: typeof DefaultButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -235,7 +235,7 @@ export const PlasmicSignOut = Object.assign(
     // Helper components rendering sub-elements
     freeBox: makeNodeComponent("freeBox"),
     text: makeNodeComponent("text"),
-    button: makeNodeComponent("button"),
+    defaultButton: makeNodeComponent("defaultButton"),
 
     // Metadata about props expected for PlasmicSignOut
     internalVariantProps: PlasmicSignOut__VariantProps,

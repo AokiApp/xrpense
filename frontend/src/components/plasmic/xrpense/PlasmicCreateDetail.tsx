@@ -45,7 +45,7 @@ import {
 } from "@plasmicapp/react-web";
 import LayoutBase from "../../LayoutBase"; // plasmic-import: xHlJ0wygH-6y/component
 import CreateStep from "../../CreateStep"; // plasmic-import: 0Id__lT8w_bK/component
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
 import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
 import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
@@ -54,6 +54,7 @@ import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/reg
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import { Quill } from "@plasmicpkgs/react-quill";
 import { quillHelpers as Quill_Helpers } from "@plasmicpkgs/react-quill";
+import Copilot from "../../Copilot"; // plasmic-import: 3QoQepU800a-/component
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
 import KvItem from "../../KvItem"; // plasmic-import: Haxw2MIMlmpq/component
@@ -105,7 +106,9 @@ export type PlasmicCreateDetail__OverridesType = {
   amountInput?: p.Flex<typeof AntdInput>;
   taxInput?: p.Flex<typeof AntdSelect>;
   descriptionInput?: p.Flex<typeof Quill>;
+  copilot?: p.Flex<typeof Copilot>;
   attachments?: p.Flex<typeof UploadWrapper>;
+  button?: p.Flex<typeof AntdButton>;
 };
 
 export interface DefaultCreateDetailProps {}
@@ -402,8 +405,11 @@ function PlasmicCreateDetail__RenderFunc(props: {
                   )
                 })}
               >
-                <Button
-                  className={classNames("__wab_instance", sty.button__jekSe)}
+                <DefaultButton
+                  className={classNames(
+                    "__wab_instance",
+                    sty.defaultButton__jekSe
+                  )}
                   color={"clear"}
                   link={`/create`}
                 >
@@ -423,7 +429,7 @@ function PlasmicCreateDetail__RenderFunc(props: {
                   >
                     {"\u79d1\u76ee\u9078\u629e\u306b\u623b\u308b"}
                   </div>
-                </Button>
+                </DefaultButton>
               </div>
               <div
                 className={classNames(projectcss.all, sty.freeBox__oCm85, {
@@ -608,7 +614,9 @@ function PlasmicCreateDetail__RenderFunc(props: {
                       data-plasmic-override={overrides.form}
                       {...child$Props}
                     >
-                      <div
+                      <p.Stack
+                        as={"div"}
+                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__afwq,
@@ -1099,7 +1107,27 @@ function PlasmicCreateDetail__RenderFunc(props: {
                                 hasVariant($state, "type", "consumable")
                             }
                           )}
-                          label={"\u7d4c\u8cbb\u306e\u8a73\u7d30"}
+                          initialValue={""}
+                          label={
+                            <p.Stack
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__nvf9A
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__zGYkN
+                                )}
+                              >
+                                {"\u7d4c\u8cbb\u306e\u8a73\u7d30"}
+                              </div>
+                            </p.Stack>
+                          }
                           name={"description"}
                           rules={[{ ruleType: "required" }]}
                           validateTrigger={["onSubmit"]}
@@ -1196,6 +1224,63 @@ function PlasmicCreateDetail__RenderFunc(props: {
                             );
                           })()}
                         </FormItemWrapper>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__uQw2H
+                          )}
+                        >
+                          <Copilot
+                            data-plasmic-name={"copilot"}
+                            data-plasmic-override={overrides.copilot}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.copilot
+                            )}
+                            onGenerate={async result => {
+                              const $steps = {};
+
+                              $steps["runActionOnForm"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      tplRef: "form",
+                                      action: "setFieldValue",
+                                      args: [["description"], result]
+                                    };
+                                    return (({ tplRef, action, args }) => {
+                                      return $refs?.[tplRef]?.[action]?.(
+                                        ...(args ?? [])
+                                      );
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["runActionOnForm"] != null &&
+                                typeof $steps["runActionOnForm"] === "object" &&
+                                typeof $steps["runActionOnForm"].then ===
+                                  "function"
+                              ) {
+                                $steps["runActionOnForm"] = await $steps[
+                                  "runActionOnForm"
+                                ];
+                              }
+                            }}
+                            systemPrompt={(() => {
+                              try {
+                                return $state.form.value.description;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            whatToGen={"\u7d4c\u8cbb\u306e\u8a73\u7d30"}
+                          />
+                        </div>
                         <FormItemWrapper
                           className={classNames(
                             "__wab_instance",
@@ -1270,12 +1355,17 @@ function PlasmicCreateDetail__RenderFunc(props: {
                                 }
                               </div>
                               <AntdButton
+                                data-plasmic-name={"button"}
+                                data-plasmic-override={overrides.button}
                                 className={classNames(
                                   "__wab_instance",
-                                  sty.button___6ImZu,
+                                  sty.button,
                                   {
-                                    [sty.buttontype_convention___6ImZuUmVmc]:
-                                      hasVariant($state, "type", "convention")
+                                    [sty.buttontype_convention]: hasVariant(
+                                      $state,
+                                      "type",
+                                      "convention"
+                                    )
                                   }
                                 )}
                                 size={"large"}
@@ -1306,12 +1396,12 @@ function PlasmicCreateDetail__RenderFunc(props: {
                             </div>
                           </UploadWrapper>
                         </FormItemWrapper>
-                        <Button
+                        <DefaultButton
                           className={classNames(
                             "__wab_instance",
-                            sty.button__aJb5O,
+                            sty.defaultButton__aJb5O,
                             {
-                              [sty.buttontype_consumable__aJb5O9EEix]:
+                              [sty.defaultButtontype_consumable__aJb5O9EEix]:
                                 hasVariant($state, "type", "consumable")
                             }
                           )}
@@ -1383,8 +1473,8 @@ function PlasmicCreateDetail__RenderFunc(props: {
                           >
                             {"\u6b21\u3078"}
                           </div>
-                        </Button>
-                      </div>
+                        </DefaultButton>
+                      </p.Stack>
                       <p.Stack
                         as={"div"}
                         hasGap={true}
@@ -1799,12 +1889,12 @@ function PlasmicCreateDetail__RenderFunc(props: {
                             sty.freeBox__risKx
                           )}
                         >
-                          <Button
+                          <DefaultButton
                             className={classNames(
                               "__wab_instance",
-                              sty.button__onvA,
+                              sty.defaultButton__onvA,
                               {
-                                [sty.buttontype_consumable__onvA9EEix]:
+                                [sty.defaultButtontype_consumable__onvA9EEix]:
                                   hasVariant($state, "type", "consumable")
                               }
                             )}
@@ -1850,13 +1940,13 @@ function PlasmicCreateDetail__RenderFunc(props: {
                             >
                               {"\u4fee\u6b63\u3059\u308b"}
                             </div>
-                          </Button>
-                          <Button
+                          </DefaultButton>
+                          <DefaultButton
                             className={classNames(
                               "__wab_instance",
-                              sty.button__jh0O,
+                              sty.defaultButton__jh0O,
                               {
-                                [sty.buttontype_consumable__jh0O9EEix]:
+                                [sty.defaultButtontype_consumable__jh0O9EEix]:
                                   hasVariant($state, "type", "consumable")
                               }
                             )}
@@ -1872,7 +1962,7 @@ function PlasmicCreateDetail__RenderFunc(props: {
                             >
                               {"\u78ba\u5b9a"}
                             </div>
-                          </Button>
+                          </DefaultButton>
                         </p.Stack>
                       </p.Stack>
                     </FormWrapper>
@@ -1902,7 +1992,9 @@ const PlasmicDescendants = {
     "amountInput",
     "taxInput",
     "descriptionInput",
-    "attachments"
+    "copilot",
+    "attachments",
+    "button"
   ],
   layoutBase: [
     "layoutBase",
@@ -1917,7 +2009,9 @@ const PlasmicDescendants = {
     "amountInput",
     "taxInput",
     "descriptionInput",
-    "attachments"
+    "copilot",
+    "attachments",
+    "button"
   ],
   createStep: ["createStep"],
   section: [
@@ -1931,7 +2025,9 @@ const PlasmicDescendants = {
     "amountInput",
     "taxInput",
     "descriptionInput",
-    "attachments"
+    "copilot",
+    "attachments",
+    "button"
   ],
   svg: ["svg"],
   form: [
@@ -1943,7 +2039,9 @@ const PlasmicDescendants = {
     "amountInput",
     "taxInput",
     "descriptionInput",
-    "attachments"
+    "copilot",
+    "attachments",
+    "button"
   ],
   titleInput: ["titleInput"],
   dateInput: ["dateInput"],
@@ -1952,7 +2050,9 @@ const PlasmicDescendants = {
   amountInput: ["amountInput"],
   taxInput: ["taxInput"],
   descriptionInput: ["descriptionInput"],
-  attachments: ["attachments"]
+  copilot: ["copilot"],
+  attachments: ["attachments", "button"],
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1971,7 +2071,9 @@ type NodeDefaultElementType = {
   amountInput: typeof AntdInput;
   taxInput: typeof AntdSelect;
   descriptionInput: typeof Quill;
+  copilot: typeof Copilot;
   attachments: typeof UploadWrapper;
+  button: typeof AntdButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2046,7 +2148,9 @@ export const PlasmicCreateDetail = Object.assign(
     amountInput: makeNodeComponent("amountInput"),
     taxInput: makeNodeComponent("taxInput"),
     descriptionInput: makeNodeComponent("descriptionInput"),
+    copilot: makeNodeComponent("copilot"),
     attachments: makeNodeComponent("attachments"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicCreateDetail
     internalVariantProps: PlasmicCreateDetail__VariantProps,

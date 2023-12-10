@@ -43,6 +43,8 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import Layout from "../../Layout"; // plasmic-import: 8kcWfTTW5pIG/component
+import Alert from "../../Alert"; // plasmic-import: 53hvCvCAAUUJ/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
 import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
 import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
@@ -53,7 +55,6 @@ import { Quill } from "@plasmicpkgs/react-quill";
 import { quillHelpers as Quill_Helpers } from "@plasmicpkgs/react-quill";
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -63,6 +64,7 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic_xrpense.module.css"; // plasmic-import: 4QmempJ4uAWNpTRouKWPHf/projectcss
 import sty from "./PlasmicHistoryDetail.module.css"; // plasmic-import: s6l-4R3u5jmn/css
 
+import Icon3Icon from "./icons/PlasmicIcon__Icon3"; // plasmic-import: g9tRk06ouNlG/icon
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: UPP2br5JFIoC/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: tOAoYivXP3sa/icon
 
@@ -80,6 +82,7 @@ export const PlasmicHistoryDetail__ArgProps = new Array<ArgPropType>();
 export type PlasmicHistoryDetail__OverridesType = {
   root?: p.Flex<"div">;
   layout?: p.Flex<typeof Layout>;
+  alert?: p.Flex<typeof Alert>;
   form?: p.Flex<typeof FormWrapper>;
   titleInput?: p.Flex<typeof AntdInput>;
   dateInput?: p.Flex<typeof AntdInput>;
@@ -89,6 +92,7 @@ export type PlasmicHistoryDetail__OverridesType = {
   taxInput?: p.Flex<typeof AntdSelect>;
   descriptionInput?: p.Flex<typeof Quill>;
   attachments?: p.Flex<typeof UploadWrapper>;
+  button?: p.Flex<typeof AntdButton>;
 };
 
 export interface DefaultHistoryDetailProps {}
@@ -275,6 +279,45 @@ function PlasmicHistoryDetail__RenderFunc(props: {
                 <div
                   className={classNames(projectcss.all, sty.freeBox___4PXxr)}
                 >
+                  <Alert
+                    data-plasmic-name={"alert"}
+                    data-plasmic-override={overrides.alert}
+                    body={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__bepup
+                        )}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__qvFE
+                          )}
+                        >
+                          {
+                            "\u7d4c\u8cbb\u304c\u627f\u8a8d\u3055\u308c\u3001Check\u304c\u4f5c\u6210\u3055\u308c\u3001\u652f\u6255\u3044\u3092\u53d7\u3051\u53d6\u308c\u308b\u72b6\u614b\u306b\u306a\u308a\u307e\u3057\u305f\u3002\u4eca\u3059\u3050\u8cc7\u91d1\u3092\u56de\u53ce\u3057\u307e\u3057\u3087\u3046\uff01"
+                          }
+                        </div>
+                        <DefaultButton
+                          className={classNames(
+                            "__wab_instance",
+                            sty.defaultButton__ox1J5
+                          )}
+                          color={"primary"}
+                          size={"compact"}
+                        >
+                          {"\u7cbe\u7b97\u3092\u958b\u59cb\u3059\u308b"}
+                        </DefaultButton>
+                      </div>
+                    }
+                    className={classNames("__wab_instance", sty.alert)}
+                    header={
+                      "\u652f\u6255\u3092\u53d7\u3051\u53d6\u308c\u307e\u3059\uff01"
+                    }
+                  />
+
                   {(() => {
                     const child$Props = {
                       className: classNames("__wab_instance", sty.form),
@@ -935,9 +978,11 @@ function PlasmicHistoryDetail__RenderFunc(props: {
                                   }
                                 </div>
                                 <AntdButton
+                                  data-plasmic-name={"button"}
+                                  data-plasmic-override={overrides.button}
                                   className={classNames(
                                     "__wab_instance",
-                                    sty.button__o5HWg
+                                    sty.button
                                   )}
                                   size={"large"}
                                 >
@@ -967,10 +1012,10 @@ function PlasmicHistoryDetail__RenderFunc(props: {
                               </div>
                             </UploadWrapper>
                           </FormItemWrapper>
-                          <Button
+                          <DefaultButton
                             className={classNames(
                               "__wab_instance",
-                              sty.button__klS0I
+                              sty.defaultButton__klS0I
                             )}
                             color={"primaryLt"}
                             onClick={async event => {
@@ -1011,7 +1056,7 @@ function PlasmicHistoryDetail__RenderFunc(props: {
                             >
                               {"\u7de8\u96c6"}
                             </div>
-                          </Button>
+                          </DefaultButton>
                         </div>
                       </FormWrapper>
                     );
@@ -1030,6 +1075,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "layout",
+    "alert",
     "form",
     "titleInput",
     "dateInput",
@@ -1038,10 +1084,12 @@ const PlasmicDescendants = {
     "amountInput",
     "taxInput",
     "descriptionInput",
-    "attachments"
+    "attachments",
+    "button"
   ],
   layout: [
     "layout",
+    "alert",
     "form",
     "titleInput",
     "dateInput",
@@ -1050,8 +1098,10 @@ const PlasmicDescendants = {
     "amountInput",
     "taxInput",
     "descriptionInput",
-    "attachments"
+    "attachments",
+    "button"
   ],
+  alert: ["alert"],
   form: [
     "form",
     "titleInput",
@@ -1061,7 +1111,8 @@ const PlasmicDescendants = {
     "amountInput",
     "taxInput",
     "descriptionInput",
-    "attachments"
+    "attachments",
+    "button"
   ],
   titleInput: ["titleInput"],
   dateInput: ["dateInput"],
@@ -1070,7 +1121,8 @@ const PlasmicDescendants = {
   amountInput: ["amountInput"],
   taxInput: ["taxInput"],
   descriptionInput: ["descriptionInput"],
-  attachments: ["attachments"]
+  attachments: ["attachments", "button"],
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1078,6 +1130,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   layout: typeof Layout;
+  alert: typeof Alert;
   form: typeof FormWrapper;
   titleInput: typeof AntdInput;
   dateInput: typeof AntdInput;
@@ -1087,6 +1140,7 @@ type NodeDefaultElementType = {
   taxInput: typeof AntdSelect;
   descriptionInput: typeof Quill;
   attachments: typeof UploadWrapper;
+  button: typeof AntdButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1150,6 +1204,7 @@ export const PlasmicHistoryDetail = Object.assign(
   {
     // Helper components rendering sub-elements
     layout: makeNodeComponent("layout"),
+    alert: makeNodeComponent("alert"),
     form: makeNodeComponent("form"),
     titleInput: makeNodeComponent("titleInput"),
     dateInput: makeNodeComponent("dateInput"),
@@ -1159,6 +1214,7 @@ export const PlasmicHistoryDetail = Object.assign(
     taxInput: makeNodeComponent("taxInput"),
     descriptionInput: makeNodeComponent("descriptionInput"),
     attachments: makeNodeComponent("attachments"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicHistoryDetail
     internalVariantProps: PlasmicHistoryDetail__VariantProps,

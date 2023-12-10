@@ -1,13 +1,13 @@
 import * as React from "react";
 import {
   PlasmicButton,
-  DefaultButtonProps
-} from "./plasmic/xrpense/PlasmicButton";
+  DefaultButtonProps,
+} from "./plasmic/radix_ui/PlasmicButton";
 
 import {
   ButtonRef,
   HtmlAnchorOnlyProps,
-  HtmlButtonOnlyProps
+  HtmlButtonOnlyProps,
 } from "@plasmicapp/react-web";
 
 export interface ButtonProps extends DefaultButtonProps {
@@ -22,12 +22,12 @@ export type ButtonComponentType = {
   (
     props: Omit<ButtonProps, HtmlAnchorOnlyProps> & {
       ref?: React.Ref<HTMLButtonElement>;
-    }
+    },
   ): React.ReactElement;
   (
     props: Omit<ButtonProps, HtmlButtonOnlyProps> & {
       ref?: React.Ref<HTMLAnchorElement>;
-    }
+    },
   ): React.ReactElement;
 };
 const Button = React.forwardRef(Button_) as any as ButtonComponentType;

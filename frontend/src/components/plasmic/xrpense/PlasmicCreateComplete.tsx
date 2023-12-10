@@ -38,7 +38,7 @@ import {
 } from "@plasmicapp/react-web";
 import LayoutBase from "../../LayoutBase"; // plasmic-import: xHlJ0wygH-6y/component
 import CreateStep from "../../CreateStep"; // plasmic-import: 0Id__lT8w_bK/component
-import Button from "../../Button"; // plasmic-import: IXlVEWy595ii/component
+import DefaultButton from "../../DefaultButton"; // plasmic-import: IXlVEWy595ii/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -168,20 +168,26 @@ function PlasmicCreateComplete__RenderFunc(props: {
                 {"\u7533\u8acb\u304c\u5b8c\u4e86\u3057\u307e\u3057\u305f"}
               </div>
               <div className={classNames(projectcss.all, sty.freeBox__lOHwW)}>
-                <Button
-                  className={classNames("__wab_instance", sty.button__qKkeE)}
+                <DefaultButton
+                  className={classNames(
+                    "__wab_instance",
+                    sty.defaultButton__qKkeE
+                  )}
                   color={"primaryLt"}
                   link={`/`}
                 >
                   {"\u30db\u30fc\u30e0\u306b\u623b\u308b"}
-                </Button>
-                <Button
-                  className={classNames("__wab_instance", sty.button__de8Ha)}
+                </DefaultButton>
+                <DefaultButton
+                  className={classNames(
+                    "__wab_instance",
+                    sty.defaultButton__de8Ha
+                  )}
                   color={"clear"}
                   link={`/create`}
                 >
                   {"\u6b21\u306e\u7533\u8acb\u3092\u3059\u308b"}
-                </Button>
+                </DefaultButton>
               </div>
             </section>
           </LayoutBase>

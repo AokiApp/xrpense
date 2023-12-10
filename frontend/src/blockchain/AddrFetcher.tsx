@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { web3auth } from ".";
 import { ADAPTER_EVENTS } from "@web3auth/base";
+import { UserTypeContext } from "../components/plasmic/xrpense/PlasmicGlobalVariant__UserType";
 
-export function AddrFetcher() {
+export function AddrFetcher({ children }: { children: ReactNode }) {
+  const [_, setAddr] = useState<string | null>(null);
   useEffect(() => {
     window.currentAddr = null;
+    setAddr(null);
     const conn = async () => {
       if (!web3auth.connected) {
         window.currentAddr = null;
+        setAddr(null);
         console.log("DISCONNECTED");
         return;
       }
@@ -15,6 +19,7 @@ export function AddrFetcher() {
         method: "xrpl_getAccounts",
       })) as string[];
       window.currentAddr = result[0];
+      setAddr(result[0]);
       console.log("CONNECTED", window.currentAddr);
     };
     conn();
@@ -29,5 +34,9 @@ export function AddrFetcher() {
       console.log("detached event handlers");
     };
   }, []);
-  return <></>;
+  return (
+    <UserTypeContext.Provider value={web3auth.connected ? "user" : "anonymous"}>
+      {children}
+    </UserTypeContext.Provider>
+  );
 }
